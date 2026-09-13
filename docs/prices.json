@@ -1,0 +1,10 @@
+{
+  "updated_at": null,
+  "zip_code": "20016",
+  "offers": [],
+  "status": {
+    "Wegmans": {"ok": false, "message": "Collector has not run yet."},
+    "Giant": {"ok": false, "message": "Collector has not run yet."},
+    "ALDI": {"ok": false, "message": "Collector has not run yet."}
+  }
+}
