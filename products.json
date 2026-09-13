@@ -30,7 +30,7 @@
       "product": "Milk",
       "need_qty": 128,
       "need_unit": "fl_oz",
-      "Wegmans": {"query": "Wegmans Whole Milk 1 Gallon", "fallback_qty": 128, "fallback_unit": "fl_oz"},
+      "Wegmans": {"query": "Wegmans Vitamin D Whole Milk", "fallback_qty": 128, "fallback_unit": "fl_oz"},
       "Giant": {"query": "Giant Vitamin D Whole Milk 1 gallon", "fallback_qty": 128, "fallback_unit": "fl_oz"},
       "ALDI": {"url": "https://www.aldi.us/store/aldi/products/16902710-friendly-farms-vitamin-d-milk-1-gal", "fallback_qty": 128, "fallback_unit": "fl_oz", "price_mode": "package"}
     },
@@ -54,7 +54,7 @@
       "product": "Greek yogurt",
       "need_qty": 32,
       "need_unit": "oz",
-      "Wegmans": {"query": "Plain Whole Milk Greek Yogurt 32 oz", "fallback_qty": 32, "fallback_unit": "oz"},
+      "Wegmans": {"query": "Wegmans 5% Greek Plain Whole Milk Yogurt", "fallback_qty": 32, "fallback_unit": "oz"},
       "Giant": {"query": "Plain Greek Yogurt 32 oz", "fallback_qty": 32, "fallback_unit": "oz"},
       "ALDI": {"url": "https://www.aldi.us/store/aldi/products/19981988-friendly-farms-plain-whole-milk-greek-yogurt-32-oz", "fallback_qty": 32, "fallback_unit": "oz", "price_mode": "package"}
     },
@@ -70,7 +70,7 @@
       "product": "Avocados",
       "need_qty": 4,
       "need_unit": "count",
-      "Wegmans": {"query": "Hass Avocados", "fallback_qty": 1, "fallback_unit": "count"},
+      "Wegmans": {"query": "Wegmans Avocados Bagged FAMILY PACK", "fallback_qty": 4, "fallback_unit": "count"},
       "Giant": {"query": "Hass Avocado", "fallback_qty": 1, "fallback_unit": "count"},
       "ALDI": {"url": "https://www.aldi.us/store/aldi/products/1456622-organic-avocado-bag-4-ct", "fallback_qty": 4, "fallback_unit": "count", "price_mode": "package", "note": "ALDI mapping currently uses the 4-count organic bag."}
     },
@@ -78,7 +78,7 @@
       "product": "Olive oil",
       "need_qty": 33.8,
       "need_unit": "fl_oz",
-      "Wegmans": {"query": "Extra Virgin Olive Oil 33.8 fl oz", "fallback_qty": 33.8, "fallback_unit": "fl_oz"},
+      "Wegmans": {"query": "Wegmans Extra Virgin Olive Oil", "fallback_qty": 33.8, "fallback_unit": "fl_oz"},
       "Giant": {"query": "Extra Virgin Olive Oil 33.8 fl oz", "fallback_qty": 33.8, "fallback_unit": "fl_oz"},
       "ALDI": {"url": "https://www.aldi.us/store/aldi/products/117654038-priano-extra-virgin-olive-oil-33-8-fl-oz", "fallback_qty": 33.8, "fallback_unit": "fl_oz", "price_mode": "package"}
     }
