@@ -1,0 +1,86 @@
+{
+  "zip_code": "20016",
+  "stores": {
+    "Wegmans": {
+      "store_name": "Wisconsin Ave",
+      "address": "41 Ridge Square NW, Washington, DC 20016",
+      "store_page": "https://www.wegmans.com/stores/wisconsin-avenue-dc"
+    },
+    "Giant": {
+      "store_name": "Cathedral Commons",
+      "address": "3336 Wisconsin Ave NW, Washington, DC 20016",
+      "store_number": "2379",
+      "store_page": "https://stores.giantfood.com/dc/washington/3336-wisconsin-ave-nw"
+    },
+    "ALDI": {
+      "location_mode": "zipcode",
+      "zip_code": "20016"
+    }
+  },
+  "products": [
+    {
+      "product": "Eggs",
+      "need_qty": 12,
+      "need_unit": "count",
+      "Wegmans": {"query": "Wegmans Grade AA Large Eggs 18 Count", "fallback_qty": 18, "fallback_unit": "count"},
+      "Giant": {"query": "Giant Large White Eggs 12 ct", "fallback_qty": 12, "fallback_unit": "count"},
+      "ALDI": {"url": "https://www.aldi.us/store/aldi/products/115095-goldhen-grade-a-large-eggs-12-ct", "fallback_qty": 12, "fallback_unit": "count", "price_mode": "package"}
+    },
+    {
+      "product": "Milk",
+      "need_qty": 128,
+      "need_unit": "fl_oz",
+      "Wegmans": {"query": "Wegmans Whole Milk 1 Gallon", "fallback_qty": 128, "fallback_unit": "fl_oz"},
+      "Giant": {"query": "Giant Vitamin D Whole Milk 1 gallon", "fallback_qty": 128, "fallback_unit": "fl_oz"},
+      "ALDI": {"url": "https://www.aldi.us/store/aldi/products/16902710-friendly-farms-vitamin-d-milk-1-gal", "fallback_qty": 128, "fallback_unit": "fl_oz", "price_mode": "package"}
+    },
+    {
+      "product": "Bananas",
+      "need_qty": 3,
+      "need_unit": "lb",
+      "Wegmans": {"query": "Bananas", "fallback_qty": 1, "fallback_unit": "lb", "price_mode": "per_lb"},
+      "Giant": {"query": "Yellow Bananas", "fallback_qty": 1, "fallback_unit": "lb", "price_mode": "per_lb"},
+      "ALDI": {"url": "https://www.aldi.us/store/aldi/products/25720157-bananas-per-lb", "fallback_qty": 1, "fallback_unit": "lb", "price_mode": "per_lb"}
+    },
+    {
+      "product": "Chicken breast",
+      "need_qty": 4,
+      "need_unit": "lb",
+      "Wegmans": {"query": "Boneless Skinless Chicken Breast Family Pack", "fallback_qty": 1, "fallback_unit": "lb", "price_mode": "per_lb"},
+      "Giant": {"query": "Giant Boneless Skinless Chicken Breasts Family Size", "fallback_qty": 1, "fallback_unit": "lb", "price_mode": "per_lb"},
+      "ALDI": {"url": "https://www.aldi.us/store/aldi/products/19554637-fresh-family-pack-chicken-breasts-per-lb", "fallback_qty": 1, "fallback_unit": "lb", "price_mode": "per_lb"}
+    },
+    {
+      "product": "Greek yogurt",
+      "need_qty": 32,
+      "need_unit": "oz",
+      "Wegmans": {"query": "Plain Whole Milk Greek Yogurt 32 oz", "fallback_qty": 32, "fallback_unit": "oz"},
+      "Giant": {"query": "Plain Greek Yogurt 32 oz", "fallback_qty": 32, "fallback_unit": "oz"},
+      "ALDI": {"url": "https://www.aldi.us/store/aldi/products/19981988-friendly-farms-plain-whole-milk-greek-yogurt-32-oz", "fallback_qty": 32, "fallback_unit": "oz", "price_mode": "package"}
+    },
+    {
+      "product": "Salmon",
+      "need_qty": 2,
+      "need_unit": "lb",
+      "Wegmans": {"query": "Atlantic Salmon Fillet", "fallback_qty": 1, "fallback_unit": "lb", "price_mode": "per_lb"},
+      "Giant": {"query": "Atlantic Salmon Fillet", "fallback_qty": 1, "fallback_unit": "lb", "price_mode": "per_lb"},
+      "ALDI": {"url": "https://www.aldi.us/store/aldi/products/17771076-atlantic-salmon-fillet-1-per-lb", "fallback_qty": 1, "fallback_unit": "lb", "price_mode": "per_lb"}
+    },
+    {
+      "product": "Avocados",
+      "need_qty": 4,
+      "need_unit": "count",
+      "Wegmans": {"query": "Hass Avocados", "fallback_qty": 1, "fallback_unit": "count"},
+      "Giant": {"query": "Hass Avocado", "fallback_qty": 1, "fallback_unit": "count"},
+      "ALDI": {"url": "https://www.aldi.us/store/aldi/products/1456622-organic-avocado-bag-4-ct", "fallback_qty": 4, "fallback_unit": "count", "price_mode": "package", "note": "ALDI mapping currently uses the 4-count organic bag."}
+    },
+    {
+      "product": "Olive oil",
+      "need_qty": 33.8,
+      "need_unit": "fl_oz",
+      "Wegmans": {"query": "Extra Virgin Olive Oil 33.8 fl oz", "fallback_qty": 33.8, "fallback_unit": "fl_oz"},
+      "Giant": {"query": "Extra Virgin Olive Oil 33.8 fl oz", "fallback_qty": 33.8, "fallback_unit": "fl_oz"},
+      "ALDI": {"url": "https://www.aldi.us/store/aldi/products/117654038-priano-extra-virgin-olive-oil-33-8-fl-oz", "fallback_qty": 33.8, "fallback_unit": "fl_oz", "price_mode": "package"}
+    }
+  ]
+}
