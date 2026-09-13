@@ -1,7 +1,103 @@
 {
-  "updated_at": "2026-09-13T17:14:56.671966+00:00",
+  "updated_at": "2026-09-13T23:41:47.184750+00:00",
   "zip_code": "20016",
   "offers": [
+    {
+      "store": "Wegmans",
+      "product": "Eggs",
+      "package_qty": 18.0,
+      "package_unit": "count",
+      "price": 2.19,
+      "original_price": null,
+      "promo": "",
+      "price_type": "ONLINE_LOCALIZED",
+      "source_url": "https://www.wegmans.com/shop/product/46155-Grade-AA-Large-Eggs-18-Count",
+      "captured_at": "2026-09-13T23:40:37.187972+00:00"
+    },
+    {
+      "store": "Wegmans",
+      "product": "Milk",
+      "package_qty": 128.0,
+      "package_unit": "fl_oz",
+      "price": 2.99,
+      "original_price": null,
+      "promo": "",
+      "price_type": "ONLINE_LOCALIZED",
+      "source_url": "https://www.wegmans.com/shop/product/94427-Vitamin-D-Whole-Milk",
+      "captured_at": "2026-09-13T23:40:42.008015+00:00"
+    },
+    {
+      "store": "Wegmans",
+      "product": "Bananas",
+      "package_qty": 1.0,
+      "package_unit": "lb",
+      "price": 0.55,
+      "original_price": null,
+      "promo": "",
+      "price_type": "ONLINE_LOCALIZED",
+      "source_url": "https://www.wegmans.com/shop/product/92685-Bananas-Sold-by-the-Each",
+      "captured_at": "2026-09-13T23:40:47.681721+00:00"
+    },
+    {
+      "store": "Wegmans",
+      "product": "Chicken breast",
+      "package_qty": 1.0,
+      "package_unit": "lb",
+      "price": 2.29,
+      "original_price": null,
+      "promo": "",
+      "price_type": "ONLINE_LOCALIZED",
+      "source_url": "https://www.wegmans.com/shop/product/57084-Boneless-Skinless-Chicken-Breasts-with-Rib-Meat-FAMILY-PACK",
+      "captured_at": "2026-09-13T23:40:53.763367+00:00"
+    },
+    {
+      "store": "Wegmans",
+      "product": "Greek yogurt",
+      "package_qty": 32.0,
+      "package_unit": "oz",
+      "price": 4.49,
+      "original_price": null,
+      "promo": "",
+      "price_type": "ONLINE_LOCALIZED",
+      "source_url": "https://www.wegmans.com/shop/product/37906-5-Greek-Plain-Whole-Milk-Yogurt",
+      "captured_at": "2026-09-13T23:40:58.800484+00:00"
+    },
+    {
+      "store": "Wegmans",
+      "product": "Salmon",
+      "package_qty": 1.0,
+      "package_unit": "lb",
+      "price": 13.99,
+      "original_price": null,
+      "promo": "",
+      "price_type": "ONLINE_LOCALIZED",
+      "source_url": "https://www.wegmans.com/shop/product/357243-Fresh-Atlantic-Salmon-Fillet-packaged-Farm-Raised-Product-of-CanadaNorway-Processed-in-USA",
+      "captured_at": "2026-09-13T23:41:06.220874+00:00"
+    },
+    {
+      "store": "Wegmans",
+      "product": "Avocados",
+      "package_qty": 4.0,
+      "package_unit": "count",
+      "price": 2.99,
+      "original_price": null,
+      "promo": "",
+      "price_type": "ONLINE_LOCALIZED",
+      "source_url": "https://www.wegmans.com/shop/product/51429-Avocados-Bagged-FAMILY-PACK",
+      "captured_at": "2026-09-13T23:41:12.654441+00:00"
+    },
+    {
+      "store": "Wegmans",
+      "product": "Olive oil",
+      "package_qty": 33.8,
+      "package_unit": "fl_oz",
+      "price": 11.99,
+      "original_price": null,
+      "promo": "",
+      "price_type": "ONLINE_LOCALIZED",
+      "source_url": "https://www.wegmans.com/shop/product/38346",
+      "captured_at": "2026-09-13T23:41:18.269720+00:00"
+    },
     {
       "store": "ALDI",
       "product": "Eggs",
@@ -13,7 +109,7 @@
       "price_type": "ONLINE_LOCALIZED",
       "source_url": "https://www.aldi.us/store/aldi/products/115095-goldhen-grade-a-large-eggs-12-ct?service=delivery&zipcode=20016",
       "variant_note": "",
-      "captured_at": "2026-09-13T17:13:18.302085+00:00"
+      "captured_at": "2026-09-13T23:41:21.970887+00:00"
     },
     {
       "store": "ALDI",
@@ -26,7 +122,7 @@
       "price_type": "ONLINE_LOCALIZED",
       "source_url": "https://www.aldi.us/store/aldi/products/16902710-friendly-farms-vitamin-d-milk-1-gal?service=delivery&zipcode=20016",
       "variant_note": "",
-      "captured_at": "2026-09-13T17:13:21.697074+00:00"
+      "captured_at": "2026-09-13T23:41:26.072108+00:00"
     },
     {
       "store": "ALDI",
@@ -39,7 +135,7 @@
       "price_type": "ONLINE_LOCALIZED",
       "source_url": "https://www.aldi.us/store/aldi/products/25720157-bananas-per-lb?service=delivery&zipcode=20016",
       "variant_note": "",
-      "captured_at": "2026-09-13T17:13:25.105372+00:00"
+      "captured_at": "2026-09-13T23:41:29.354830+00:00"
     },
     {
       "store": "ALDI",
@@ -52,7 +148,7 @@
       "price_type": "ONLINE_LOCALIZED",
       "source_url": "https://www.aldi.us/store/aldi/products/19554637-fresh-family-pack-chicken-breasts-per-lb?service=delivery&zipcode=20016",
       "variant_note": "",
-      "captured_at": "2026-09-13T17:13:28.580679+00:00"
+      "captured_at": "2026-09-13T23:41:33.212892+00:00"
     },
     {
       "store": "ALDI",
@@ -65,7 +161,7 @@
       "price_type": "ONLINE_LOCALIZED",
       "source_url": "https://www.aldi.us/store/aldi/products/19981988-friendly-farms-plain-whole-milk-greek-yogurt-32-oz?service=delivery&zipcode=20016",
       "variant_note": "",
-      "captured_at": "2026-09-13T17:13:32.240295+00:00"
+      "captured_at": "2026-09-13T23:41:36.702652+00:00"
     },
     {
       "store": "ALDI",
@@ -78,7 +174,7 @@
       "price_type": "ONLINE_LOCALIZED",
       "source_url": "https://www.aldi.us/store/aldi/products/17771076-atlantic-salmon-fillet-1-per-lb?service=delivery&zipcode=20016",
       "variant_note": "",
-      "captured_at": "2026-09-13T17:13:35.777026+00:00"
+      "captured_at": "2026-09-13T23:41:40.074579+00:00"
     },
     {
       "store": "ALDI",
@@ -91,7 +187,7 @@
       "price_type": "ONLINE_LOCALIZED",
       "source_url": "https://www.aldi.us/store/aldi/products/1456622-organic-avocado-bag-4-ct?service=delivery&zipcode=20016",
       "variant_note": "ALDI mapping currently uses the 4-count organic bag.",
-      "captured_at": "2026-09-13T17:13:39.313529+00:00"
+      "captured_at": "2026-09-13T23:41:43.471520+00:00"
     },
     {
       "store": "ALDI",
@@ -104,103 +200,7 @@
       "price_type": "ONLINE_LOCALIZED",
       "source_url": "https://www.aldi.us/store/aldi/products/117654038-priano-extra-virgin-olive-oil-33-8-fl-oz?service=delivery&zipcode=20016",
       "variant_note": "",
-      "captured_at": "2026-09-13T17:13:42.542670+00:00"
-    },
-    {
-      "store": "Wegmans",
-      "product": "Eggs",
-      "package_qty": 18.0,
-      "package_unit": "count",
-      "price": 2.49,
-      "original_price": null,
-      "promo": "",
-      "price_type": "ONLINE_LOCALIZED",
-      "source_url": "https://www.wegmans.com/shop/product/46155-Grade-AA-Large-Eggs-18-Count",
-      "captured_at": "2026-09-13T17:14:17.088324+00:00"
-    },
-    {
-      "store": "Wegmans",
-      "product": "Milk",
-      "package_qty": 128.0,
-      "package_unit": "fl_oz",
-      "price": 2.99,
-      "original_price": null,
-      "promo": "",
-      "price_type": "ONLINE_LOCALIZED",
-      "source_url": "https://www.wegmans.com/shop/product/94427-Vitamin-D-Whole-Milk",
-      "captured_at": "2026-09-13T17:14:22.661318+00:00"
-    },
-    {
-      "store": "Wegmans",
-      "product": "Bananas",
-      "package_qty": 1.0,
-      "package_unit": "lb",
-      "price": 0.55,
-      "original_price": null,
-      "promo": "",
-      "price_type": "ONLINE_LOCALIZED",
-      "source_url": "https://www.wegmans.com/shop/product/92685-Bananas-Sold-by-the-Each",
-      "captured_at": "2026-09-13T17:14:27.549725+00:00"
-    },
-    {
-      "store": "Wegmans",
-      "product": "Chicken breast",
-      "package_qty": 1.0,
-      "package_unit": "lb",
-      "price": 2.29,
-      "original_price": null,
-      "promo": "",
-      "price_type": "ONLINE_LOCALIZED",
-      "source_url": "https://www.wegmans.com/shop/product/57084-Boneless-Skinless-Chicken-Breasts-with-Rib-Meat-FAMILY-PACK",
-      "captured_at": "2026-09-13T17:14:33.531344+00:00"
-    },
-    {
-      "store": "Wegmans",
-      "product": "Greek yogurt",
-      "package_qty": 32.0,
-      "package_unit": "oz",
-      "price": 4.49,
-      "original_price": null,
-      "promo": "",
-      "price_type": "ONLINE_LOCALIZED",
-      "source_url": "https://www.wegmans.com/shop/product/37906-5-Greek-Plain-Whole-Milk-Yogurt",
-      "captured_at": "2026-09-13T17:14:39.820849+00:00"
-    },
-    {
-      "store": "Wegmans",
-      "product": "Salmon",
-      "package_qty": 1.0,
-      "package_unit": "lb",
-      "price": 13.99,
-      "original_price": null,
-      "promo": "",
-      "price_type": "ONLINE_LOCALIZED",
-      "source_url": "https://www.wegmans.com/shop/product/357243-Fresh-Atlantic-Salmon-Fillet-packaged-Farm-Raised-Product-of-CanadaNorway-Processed-in-USA",
-      "captured_at": "2026-09-13T17:14:44.880985+00:00"
-    },
-    {
-      "store": "Wegmans",
-      "product": "Avocados",
-      "package_qty": 4.0,
-      "package_unit": "count",
-      "price": 2.99,
-      "original_price": null,
-      "promo": "",
-      "price_type": "ONLINE_LOCALIZED",
-      "source_url": "https://www.wegmans.com/shop/product/51429-Avocados-Bagged-FAMILY-PACK",
-      "captured_at": "2026-09-13T17:14:50.030991+00:00"
-    },
-    {
-      "store": "Wegmans",
-      "product": "Olive oil",
-      "package_qty": 33.8,
-      "package_unit": "fl_oz",
-      "price": 11.99,
-      "original_price": null,
-      "promo": "",
-      "price_type": "ONLINE_LOCALIZED",
-      "source_url": "https://www.wegmans.com/shop/product/38346",
-      "captured_at": "2026-09-13T17:14:56.617155+00:00"
+      "captured_at": "2026-09-13T23:41:47.136375+00:00"
     }
   ],
   "status": {
@@ -217,14 +217,14 @@
       "products_requested": 8,
       "message": "0/8 products collected",
       "errors": [
-        "Eggs: Giant did not expose a localized price to this session",
-        "Milk: Giant did not expose a localized price to this session",
-        "Bananas: Giant did not expose a localized price to this session",
-        "Chicken breast: Giant did not expose a localized price to this session",
-        "Greek yogurt: Giant did not expose a localized price to this session",
-        "Salmon: Giant did not expose a localized price to this session",
-        "Avocados: Giant product page failed identity check",
-        "Olive oil: Giant did not expose a localized price to this session"
+        "Eggs: Giant retired from active store set",
+        "Milk: Giant retired from active store set",
+        "Bananas: Giant retired from active store set",
+        "Chicken breast: Giant retired from active store set",
+        "Greek yogurt: Giant retired from active store set",
+        "Salmon: Giant retired from active store set",
+        "Avocados: Giant retired from active store set",
+        "Olive oil: Giant retired from active store set"
       ]
     },
     "ALDI": {
