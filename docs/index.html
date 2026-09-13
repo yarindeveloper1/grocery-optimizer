@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111111">
+<title>Grocery Optimizer</title>
+<style>
+:root{--bg:#f5f5f5;--card:#fff;--text:#111;--muted:#666;--border:#ddd;--good:#0b6b2d;--bad:#a32121}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+main{max-width:760px;margin:auto;padding:14px 14px 90px}
+h1{font-size:24px;margin:6px 0 2px}.sub{font-size:13px;color:var(--muted);margin-bottom:12px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px;margin:10px 0}
+button,input,select{font:inherit;border:1px solid var(--border);border-radius:10px;background:#fff;padding:10px;color:#111}
+button{font-weight:650}.primary{background:#111;color:#fff;border-color:#111}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:8px}.tiny{font-size:12px;color:var(--muted)}
+.statusgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:9px}
+.status{padding:9px;background:#f4f4f4;border-radius:10px;font-size:12px}.ok{color:var(--good);font-weight:700}.bad{color:var(--bad);font-weight:700}
+.item{display:grid;grid-template-columns:1.65fr .7fr .8fr 42px;gap:6px;margin:7px 0}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:8px 5px;border-bottom:1px solid #eee;text-align:left;vertical-align:top}th{color:#666}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.kpi{padding:10px;background:#f3f3f3;border-radius:10px}.kpi b{display:block;font-size:18px}
+footer{position:fixed;left:0;right:0;bottom:0;background:rgba(255,255,255,.96);border-top:1px solid #ddd;padding:10px 14px calc(10px + env(safe-area-inset-bottom))}
+footer>div{max-width:760px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+</style>
+</head>
+<body>
+<main>
+<h1>Grocery Optimizer</h1>
+<div class="sub">Wegmans Wisconsin Ave · Giant Cathedral Commons · ALDI localized to 20016</div>
+<div class="card"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><div><b>Live price feed</b><div class="tiny" id="updated">Not loaded</div></div><button onclick="loadLive(true)">Refresh</button></div><div id="statuses" class="statusgrid"></div></div>
+<div class="card"><div class="row"><div><div class="tiny">Maximum stores</div><select id="maxStores" style="width:100%"><option>1</option><option selected>2</option><option>3</option></select></div><div><div class="tiny">Extra-stop penalty ($)</div><input id="penalty" type="number" value="8" min="0" step="1" style="width:100%"></div></div></div>
+<div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><b>Shopping list</b><button onclick="addItem()">+ Add</button></div><div id="list"></div></div>
+<div class="card" id="result"><div class="tiny">Load live prices, then tap Optimize.</div></div>
+<div class="card"><b>Current offers loaded</b><div class="tiny" style="margin:4px 0 8px">Only successfully localized collector results are used.</div><div id="offersTable"></div></div>
+</main>
+<footer><div><button onclick="loadLive(true)">Refresh prices</button><button class="primary" onclick="optimize()">Optimize</button></div></footer>
+<script>
+const BASE_LIST=[{product:"Eggs",need_qty:12,need_unit:"count"},{product:"Milk",need_qty:128,need_unit:"fl_oz"},{product:"Bananas",need_qty:3,need_unit:"lb"},{product:"Chicken breast",need_qty:4,need_unit:"lb"},{product:"Greek yogurt",need_qty:32,need_unit:"oz"},{product:"Salmon",need_qty:2,need_unit:"lb"},{product:"Avocados",need_qty:4,need_unit:"count"},{product:"Olive oil",need_qty:33.8,need_unit:"fl_oz"}];
+const UNITS={count:["count",1],oz:["weight",1],lb:["weight",16],fl_oz:["volume",1]};
+let shopping=JSON.parse(localStorage.getItem("liveShopList")||"null")||structuredClone(BASE_LIST);let live={offers:[],status:{}};
+const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+const opts=u=>["count","oz","lb","fl_oz"].map(x=>`<option value="${x}" ${x===u?"selected":""}>${x==="fl_oz"?"fl oz":x}</option>`).join("");
+function save(){localStorage.setItem("liveShopList",JSON.stringify(shopping))}
+function renderList(){const b=document.getElementById("list");b.innerHTML="";shopping.forEach((x,i)=>{const d=document.createElement("div");d.className="item";d.innerHTML=`<input value="${esc(x.product)}" oninput="shopping[${i}].product=this.value;save()"><input type="number" step=".1" value="${x.need_qty}" oninput="shopping[${i}].need_qty=Number(this.value);save()"><select onchange="shopping[${i}].need_unit=this.value;save()">${opts(x.need_unit)}</select><button onclick="shopping.splice(${i},1);save();renderList()">×</button>`;b.appendChild(d)})}
+function addItem(){shopping.push({product:"New item",need_qty:1,need_unit:"count"});save();renderList()}
+async function loadLive(force=false){const updated=document.getElementById("updated");updated.textContent="Loading…";try{const r=await fetch(`prices.json?ts=${force?Date.now():"1"}`,{cache:"no-store"});if(!r.ok)throw new Error("HTTP "+r.status);live=await r.json();updated.textContent=live.updated_at?`Updated ${new Date(live.updated_at).toLocaleString()}`:"Collector has not run yet";renderStatus();renderOffers()}catch(e){updated.textContent="Could not load live feed. Use the hosted GitHub Pages URL."}}
+function renderStatus(){const b=document.getElementById("statuses");b.innerHTML="";["Wegmans","Giant","ALDI"].forEach(s=>{const x=live.status?.[s]||{ok:false,message:"No data"};b.innerHTML+=`<div class="status"><b>${s}</b><br><span class="${x.ok?"ok":"bad"}">${esc(x.message||"No data")}</span></div>`})}
+function renderOffers(){const b=document.getElementById("offersTable");if(!live.offers?.length){b.innerHTML='<div class="tiny">No live offers yet.</div>';return}let h="<table><thead><tr><th>Item</th><th>Store</th><th>Price</th><th>Package</th></tr></thead><tbody>";live.offers.forEach(o=>h+=`<tr><td>${esc(o.product)}</td><td>${esc(o.store)}</td><td>$${Number(o.price).toFixed(2)}${o.promo?`<br><span class="tiny">${esc(o.promo)}</span>`:""}</td><td>${o.package_qty} ${o.package_unit==="fl_oz"?"fl oz":o.package_unit}</td></tr>`);b.innerHTML=h+"</tbody></table>"}
+function base(q,u){const x=UNITS[u];return x?{g:x[0],q:Number(q)*x[1]}:null}
+function calc(n,o){const a=base(n.need_qty,n.need_unit),b=base(o.package_qty,o.package_unit);if(!a||!b||a.g!==b.g)return null;const packs=Math.max(1,Math.ceil(a.q/b.q));return {packs,total:packs*Number(o.price)}}
+function combinations(a,k){const out=[];function r(s,p){if(p.length===k){out.push([...p]);return}for(let i=s;i<a.length;i++){p.push(a[i]);r(i+1,p);p.pop()}}r(0,[]);return out}
+function optimize(){const offers=live.offers||[];if(!offers.length){document.getElementById("result").innerHTML='<span class="bad">No live prices are loaded yet.</span>';return}const stores=[...new Set(offers.map(x=>x.store))],max=Number(document.getElementById("maxStores").value),pen=Number(document.getElementById("penalty").value)||0;let cand=[];for(let k=1;k<=Math.min(max,stores.length);k++)for(const subset of combinations(stores,k)){let detail=[],ok=true;for(const n of shopping){let options=[];for(const o of offers.filter(x=>x.product.toLowerCase()===n.product.toLowerCase()&&subset.includes(x.store))){const c=calc(n,o);if(c)options.push({...o,...c})}if(!options.length){ok=false;break}options.sort((a,b)=>a.total-b.total);detail.push(options[0])}if(ok){const basket=detail.reduce((s,x)=>s+x.total,0),used=[...new Set(detail.map(x=>x.store))],stop=(used.length-1)*pen;cand.push({basket,used,stop,obj:basket+stop,detail})}}if(!cand.length){document.getElementById("result").innerHTML='<span class="bad">The live feed is missing at least one item needed to complete your list.</span>';return}cand.sort((a,b)=>a.obj-b.obj);const x=cand[0];let h=`<b style="font-size:19px">Best plan</b><div class="kpis" style="margin-top:9px"><div class="kpi"><span class="tiny">Basket</span><b>$${x.basket.toFixed(2)}</b></div><div class="kpi"><span class="tiny">Stores</span><b>${x.used.length}</b></div><div class="kpi"><span class="tiny">Effective</span><b>$${x.obj.toFixed(2)}</b></div></div><table style="margin-top:10px"><thead><tr><th>Item</th><th>Store</th><th>Total</th></tr></thead><tbody>`;x.detail.forEach(o=>h+=`<tr><td>${esc(o.product)}</td><td><b>${esc(o.store)}</b></td><td>$${o.total.toFixed(2)}</td></tr>`);document.getElementById("result").innerHTML=h+"</tbody></table>"}
+renderList();renderStatus();loadLive(false);
+</script>
+</body>
+</html>
