@@ -4,6 +4,13 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "15 11 * * *"
+  push:
+    branches: ["main"]
+    paths:
+      - "products.json"
+      - "collector/**"
+      - "requirements.txt"
+      - ".github/workflows/update-prices.yml"
 
 permissions:
   contents: write
