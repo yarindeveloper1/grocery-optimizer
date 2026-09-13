@@ -16,6 +16,31 @@ PER_LB = re.compile(r"\$(\d{1,3}(?:,\d{3})*(?:\.\d{2})?)\s*/\s*lb", re.I)
 CURRENT_PRICE = re.compile(r"Current price:\s*\$(\d{1,3}(?:,\d{3})*(?:\.\d{2})?)", re.I)
 ORIGINAL_PRICE = re.compile(r"Original Price:\s*\$(\d{1,3}(?:,\d{3})*(?:\.\d{2})?)", re.I)
 
+# These terms are deliberately conservative. If a search result does not contain
+# the important identity words for the requested product, we reject it rather
+# than feed a plausible-looking but wrong price into the optimizer.
+REQUIRED_TERMS = {
+    "Eggs": ["egg"],
+    "Milk": ["whole", "milk"],
+    "Bananas": ["banana"],
+    "Chicken breast": ["chicken", "breast"],
+    "Greek yogurt": ["greek", "yogurt"],
+    "Salmon": ["salmon"],
+    "Avocados": ["avocado"],
+    "Olive oil": ["olive", "oil"],
+}
+
+PRICE_LIMITS = {
+    "Eggs": (0.50, 20.00),
+    "Milk": (1.00, 20.00),
+    "Bananas": (0.10, 5.00),
+    "Chicken breast": (0.50, 20.00),
+    "Greek yogurt": (0.50, 25.00),
+    "Salmon": (2.00, 50.00),
+    "Avocados": (0.20, 20.00),
+    "Olive oil": (2.00, 80.00),
+}
+
 
 def money(s):
     return float(s.replace(",", ""))
@@ -35,6 +60,23 @@ def infer_package(text, fallback_qty, fallback_unit):
         if m:
             return round(float(m.group(1)) * factor, 3), unit
     return float(fallback_qty), fallback_unit
+
+
+def package_from_config(cfg):
+    """Use the package we intentionally configured, not arbitrary page text."""
+    if cfg.get("price_mode") == "per_lb":
+        return 1.0, "lb"
+    return float(cfg["fallback_qty"]), cfg["fallback_unit"]
+
+
+def validate_price(product_name, price):
+    lo, hi = PRICE_LIMITS.get(product_name, (0.05, 500.0))
+    if not (lo <= price <= hi):
+        raise RuntimeError(f"Suspicious price ${price:.2f} for {product_name}")
+
+
+def required_terms(product_name):
+    return REQUIRED_TERMS.get(product_name, [])
 
 
 def parse_price(text, mode="package"):
@@ -68,14 +110,17 @@ async def dismiss_common(page):
             pass
 
 
-async def choose_link(page, query, href_fragment):
+async def choose_link(page, query, href_fragment, must_include=None):
     links = page.locator(f'a[href*="{href_fragment}"]')
     n = min(await links.count(), 40)
     if not n:
         return None
+
     tokens = [x.lower() for x in re.findall(r"[A-Za-z0-9]+", query) if len(x) > 2]
+    must_include = [x.lower() for x in (must_include or [])]
     best = None
     best_score = -1
+
     for i in range(n):
         link = links.nth(i)
         try:
@@ -83,9 +128,17 @@ async def choose_link(page, query, href_fragment):
             href = await link.get_attribute("href")
         except Exception:
             continue
-        score = sum(tok in txt.lower() for tok in tokens)
-        if score > best_score and href:
+        if not href:
+            continue
+
+        haystack = f"{txt} {href}".lower()
+        if must_include and not all(term in haystack for term in must_include):
+            continue
+
+        score = sum(tok in haystack for tok in tokens)
+        if score > best_score:
             best, best_score = href, score
+
     return best
 
 
@@ -100,9 +153,12 @@ async def collect_aldi(context, product):
         price, original = parse_price(text, cfg.get("price_mode", "package"))
         if price is None:
             raise RuntimeError("No ALDI price found")
-        qty, unit = infer_package(text, cfg["fallback_qty"], cfg["fallback_unit"])
-        if cfg.get("price_mode") == "per_lb":
-            qty, unit = 1.0, "lb"
+        validate_price(product["product"], price)
+
+        # ALDI uses exact product URLs in products.json. The intended package is
+        # already known, so do not let unrelated page text overwrite it.
+        qty, unit = package_from_config(cfg)
+
         return {
             "store": "ALDI",
             "product": product["product"],
@@ -163,9 +219,14 @@ async def collect_giant(context, product):
         await page.goto(url, wait_until="domcontentloaded", timeout=60000)
         await dismiss_common(page)
         await page.wait_for_timeout(1800)
-        href = await choose_link(page, cfg["query"], "/groceries/product/")
+        href = await choose_link(
+            page,
+            cfg["query"],
+            "/groceries/product/",
+            required_terms(product["product"]),
+        )
         if not href:
-            raise RuntimeError("No Giant product link found")
+            raise RuntimeError("No trustworthy Giant product link found")
         if href.startswith("/"):
             href = "https://giantfood.com" + href
         await page.goto(href, wait_until="domcontentloaded", timeout=60000)
@@ -176,9 +237,8 @@ async def collect_giant(context, product):
         price, original = parse_price(text, cfg.get("price_mode", "package"))
         if price is None:
             raise RuntimeError("No Giant price found")
-        qty, unit = infer_package(text[:2500], cfg["fallback_qty"], cfg["fallback_unit"])
-        if cfg.get("price_mode") == "per_lb":
-            qty, unit = 1.0, "lb"
+        validate_price(product["product"], price)
+        qty, unit = package_from_config(cfg)
         return {
             "store": "Giant",
             "product": product["product"],
@@ -233,9 +293,14 @@ async def collect_wegmans(context, product):
     try:
         await set_wegmans_store(page)
         await wegmans_search(page, cfg["query"])
-        href = await choose_link(page, cfg["query"], "/shop/product/")
+        href = await choose_link(
+            page,
+            cfg["query"],
+            "/shop/product/",
+            required_terms(product["product"]),
+        )
         if not href:
-            raise RuntimeError("No Wegmans product link found")
+            raise RuntimeError("No trustworthy Wegmans product link found")
         if href.startswith("/"):
             href = "https://www.wegmans.com" + href
         await page.goto(href, wait_until="domcontentloaded", timeout=60000)
@@ -244,9 +309,8 @@ async def collect_wegmans(context, product):
         price, original = parse_price(text, cfg.get("price_mode", "package"))
         if price is None:
             raise RuntimeError("Wegmans did not expose a price after store selection")
-        qty, unit = infer_package(text[:2200], cfg["fallback_qty"], cfg["fallback_unit"])
-        if cfg.get("price_mode") == "per_lb":
-            qty, unit = 1.0, "lb"
+        validate_price(product["product"], price)
+        qty, unit = package_from_config(cfg)
         return {
             "store": "Wegmans",
             "product": product["product"],
