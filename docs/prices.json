@@ -1,10 +1,238 @@
 {
-  "updated_at": null,
+  "updated_at": "2026-09-13T02:23:03.714827+00:00",
   "zip_code": "20016",
-  "offers": [],
+  "offers": [
+    {
+      "store": "ALDI",
+      "product": "Eggs",
+      "package_qty": 80.0,
+      "package_unit": "fl_oz",
+      "price": 1.85,
+      "original_price": 3.09,
+      "promo": "Price drop",
+      "price_type": "ONLINE_LOCALIZED",
+      "source_url": "https://www.aldi.us/store/aldi/products/115095-goldhen-grade-a-large-eggs-12-ct?service=delivery&zipcode=20016",
+      "variant_note": "",
+      "captured_at": "2026-09-13T02:20:54.702189+00:00"
+    },
+    {
+      "store": "ALDI",
+      "product": "Milk",
+      "package_qty": 80.0,
+      "package_unit": "fl_oz",
+      "price": 3.15,
+      "original_price": 3.79,
+      "promo": "Price drop",
+      "price_type": "ONLINE_LOCALIZED",
+      "source_url": "https://www.aldi.us/store/aldi/products/16902710-friendly-farms-vitamin-d-milk-1-gal?service=delivery&zipcode=20016",
+      "variant_note": "",
+      "captured_at": "2026-09-13T02:20:58.021635+00:00"
+    },
+    {
+      "store": "ALDI",
+      "product": "Bananas",
+      "package_qty": 1.0,
+      "package_unit": "lb",
+      "price": 0.49,
+      "original_price": null,
+      "promo": "",
+      "price_type": "ONLINE_LOCALIZED",
+      "source_url": "https://www.aldi.us/store/aldi/products/25720157-bananas-per-lb?service=delivery&zipcode=20016",
+      "variant_note": "",
+      "captured_at": "2026-09-13T02:21:01.366957+00:00"
+    },
+    {
+      "store": "ALDI",
+      "product": "Chicken breast",
+      "package_qty": 1.0,
+      "package_unit": "lb",
+      "price": 2.19,
+      "original_price": null,
+      "promo": "",
+      "price_type": "ONLINE_LOCALIZED",
+      "source_url": "https://www.aldi.us/store/aldi/products/19554637-fresh-family-pack-chicken-breasts-per-lb?service=delivery&zipcode=20016",
+      "variant_note": "",
+      "captured_at": "2026-09-13T02:21:04.869649+00:00"
+    },
+    {
+      "store": "ALDI",
+      "product": "Greek yogurt",
+      "package_qty": 64.0,
+      "package_unit": "fl_oz",
+      "price": 3.85,
+      "original_price": 4.25,
+      "promo": "Price drop",
+      "price_type": "ONLINE_LOCALIZED",
+      "source_url": "https://www.aldi.us/store/aldi/products/19981988-friendly-farms-plain-whole-milk-greek-yogurt-32-oz?service=delivery&zipcode=20016",
+      "variant_note": "",
+      "captured_at": "2026-09-13T02:21:08.363585+00:00"
+    },
+    {
+      "store": "ALDI",
+      "product": "Salmon",
+      "package_qty": 1.0,
+      "package_unit": "lb",
+      "price": 8.29,
+      "original_price": null,
+      "promo": "",
+      "price_type": "ONLINE_LOCALIZED",
+      "source_url": "https://www.aldi.us/store/aldi/products/17771076-atlantic-salmon-fillet-1-per-lb?service=delivery&zipcode=20016",
+      "variant_note": "",
+      "captured_at": "2026-09-13T02:21:11.892990+00:00"
+    },
+    {
+      "store": "ALDI",
+      "product": "Avocados",
+      "package_qty": 80.0,
+      "package_unit": "fl_oz",
+      "price": 4.29,
+      "original_price": null,
+      "promo": "",
+      "price_type": "ONLINE_LOCALIZED",
+      "source_url": "https://www.aldi.us/store/aldi/products/1456622-organic-avocado-bag-4-ct?service=delivery&zipcode=20016",
+      "variant_note": "ALDI mapping currently uses the 4-count organic bag.",
+      "captured_at": "2026-09-13T02:21:15.336517+00:00"
+    },
+    {
+      "store": "ALDI",
+      "product": "Olive oil",
+      "package_qty": 33.8,
+      "package_unit": "fl_oz",
+      "price": 10.99,
+      "original_price": 12.75,
+      "promo": "Price drop",
+      "price_type": "ONLINE_LOCALIZED",
+      "source_url": "https://www.aldi.us/store/aldi/products/117654038-priano-extra-virgin-olive-oil-33-8-fl-oz?service=delivery&zipcode=20016",
+      "variant_note": "",
+      "captured_at": "2026-09-13T02:21:19.063125+00:00"
+    },
+    {
+      "store": "Wegmans",
+      "product": "Eggs",
+      "package_qty": 18.0,
+      "package_unit": "count",
+      "price": 2.49,
+      "original_price": null,
+      "promo": "",
+      "price_type": "ONLINE_LOCALIZED",
+      "source_url": "https://www.wegmans.com/shop/product/46155-Grade-AA-Large-Eggs-18-Count",
+      "captured_at": "2026-09-13T02:22:00.892412+00:00"
+    },
+    {
+      "store": "Wegmans",
+      "product": "Milk",
+      "package_qty": 64.0,
+      "package_unit": "fl_oz",
+      "price": 5.99,
+      "original_price": null,
+      "promo": "",
+      "price_type": "ONLINE_LOCALIZED",
+      "source_url": "https://www.wegmans.com/shop/product/211087-Low-Fat-Milk",
+      "captured_at": "2026-09-13T02:22:09.760910+00:00"
+    },
+    {
+      "store": "Wegmans",
+      "product": "Bananas",
+      "package_qty": 1.0,
+      "package_unit": "lb",
+      "price": 0.55,
+      "original_price": null,
+      "promo": "",
+      "price_type": "ONLINE_LOCALIZED",
+      "source_url": "https://www.wegmans.com/shop/product/92685-Bananas-Sold-by-the-Each",
+      "captured_at": "2026-09-13T02:22:18.813712+00:00"
+    },
+    {
+      "store": "Wegmans",
+      "product": "Chicken breast",
+      "package_qty": 1.0,
+      "package_unit": "lb",
+      "price": 2.29,
+      "original_price": null,
+      "promo": "",
+      "price_type": "ONLINE_LOCALIZED",
+      "source_url": "https://www.wegmans.com/shop/product/57084-Boneless-Skinless-Chicken-Breasts-with-Rib-Meat-FAMILY-PACK",
+      "captured_at": "2026-09-13T02:22:29.072976+00:00"
+    },
+    {
+      "store": "Wegmans",
+      "product": "Greek yogurt",
+      "package_qty": 32.0,
+      "package_unit": "oz",
+      "price": 7.99,
+      "original_price": null,
+      "promo": "",
+      "price_type": "ONLINE_LOCALIZED",
+      "source_url": "https://www.wegmans.com/shop/product/948522-Plain-Goat-Milk-Yogurt-32oz-Tub",
+      "captured_at": "2026-09-13T02:22:37.628605+00:00"
+    },
+    {
+      "store": "Wegmans",
+      "product": "Salmon",
+      "package_qty": 1.0,
+      "package_unit": "lb",
+      "price": 13.99,
+      "original_price": null,
+      "promo": "",
+      "price_type": "ONLINE_LOCALIZED",
+      "source_url": "https://www.wegmans.com/shop/product/357243-Fresh-Atlantic-Salmon-Fillet-packaged-Farm-Raised-Product-of-CanadaNorway-Processed-in-USA",
+      "captured_at": "2026-09-13T02:22:46.060693+00:00"
+    },
+    {
+      "store": "Wegmans",
+      "product": "Avocados",
+      "package_qty": 1.0,
+      "package_unit": "count",
+      "price": 2.99,
+      "original_price": null,
+      "promo": "",
+      "price_type": "ONLINE_LOCALIZED",
+      "source_url": "https://www.wegmans.com/shop/product/51429-Avocados-Bagged-FAMILY-PACK",
+      "captured_at": "2026-09-13T02:22:54.684595+00:00"
+    },
+    {
+      "store": "Wegmans",
+      "product": "Olive oil",
+      "package_qty": 6.0,
+      "package_unit": "fl_oz",
+      "price": 8.99,
+      "original_price": null,
+      "promo": "",
+      "price_type": "ONLINE_LOCALIZED",
+      "source_url": "https://www.wegmans.com/shop/product/938196-Vanilla-Cashmere-6-fl-oz",
+      "captured_at": "2026-09-13T02:23:03.637356+00:00"
+    }
+  ],
   "status": {
-    "Wegmans": {"ok": false, "message": "Collector has not run yet."},
-    "Giant": {"ok": false, "message": "Collector has not run yet."},
-    "ALDI": {"ok": false, "message": "Collector has not run yet."}
+    "Wegmans": {
+      "ok": true,
+      "products_collected": 8,
+      "products_requested": 8,
+      "message": "OK",
+      "errors": []
+    },
+    "Giant": {
+      "ok": false,
+      "products_collected": 0,
+      "products_requested": 8,
+      "message": "0/8 products collected",
+      "errors": [
+        "Eggs: No Giant product link found",
+        "Milk: No Giant product link found",
+        "Bananas: No Giant product link found",
+        "Chicken breast: No Giant product link found",
+        "Greek yogurt: No Giant product link found",
+        "Salmon: No Giant product link found",
+        "Avocados: No Giant product link found",
+        "Olive oil: No Giant product link found"
+      ]
+    },
+    "ALDI": {
+      "ok": true,
+      "products_collected": 8,
+      "products_requested": 8,
+      "message": "OK",
+      "errors": []
+    }
   }
 }
