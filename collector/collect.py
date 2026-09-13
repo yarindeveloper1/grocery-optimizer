@@ -16,9 +16,6 @@ PER_LB = re.compile(r"\$(\d{1,3}(?:,\d{3})*(?:\.\d{2})?)\s*/\s*lb", re.I)
 CURRENT_PRICE = re.compile(r"Current price:\s*\$(\d{1,3}(?:,\d{3})*(?:\.\d{2})?)", re.I)
 ORIGINAL_PRICE = re.compile(r"Original Price:\s*\$(\d{1,3}(?:,\d{3})*(?:\.\d{2})?)", re.I)
 
-# These terms are deliberately conservative. If a search result does not contain
-# the important identity words for the requested product, we reject it rather
-# than feed a plausible-looking but wrong price into the optimizer.
 REQUIRED_TERMS = {
     "Eggs": ["egg"],
     "Milk": ["whole", "milk"],
@@ -46,24 +43,7 @@ def money(s):
     return float(s.replace(",", ""))
 
 
-def infer_package(text, fallback_qty, fallback_unit):
-    t = text.lower().replace("fl. oz", "fl oz")
-    patterns = [
-        (r"(\d+(?:\.\d+)?)\s*fl\s*oz\b", "fl_oz", 1),
-        (r"(\d+(?:\.\d+)?)\s*oz\b", "oz", 1),
-        (r"(\d+(?:\.\d+)?)\s*lb\b", "lb", 1),
-        (r"(\d+(?:\.\d+)?)\s*(?:ct|count)\b", "count", 1),
-        (r"(\d+(?:\.\d+)?)\s*(?:gal|gallon)\b", "fl_oz", 128),
-    ]
-    for pat, unit, factor in patterns:
-        m = re.search(pat, t, re.I)
-        if m:
-            return round(float(m.group(1)) * factor, 3), unit
-    return float(fallback_qty), fallback_unit
-
-
 def package_from_config(cfg):
-    """Use the package we intentionally configured, not arbitrary page text."""
     if cfg.get("price_mode") == "per_lb":
         return 1.0, "lb"
     return float(cfg["fallback_qty"]), cfg["fallback_unit"]
@@ -95,6 +75,49 @@ def parse_price(text, mode="package"):
     return vals[0], None
 
 
+def observed_package(text, expected_unit):
+    """Read package size from the top of a product page, where title/size appear."""
+    t = text[:2500].lower().replace("fl. oz.", "fl oz").replace("fl. oz", "fl oz")
+    if expected_unit == "fl_oz":
+        m = re.search(r"(\d+(?:\.\d+)?)\s*(?:gallon|gal)\b", t)
+        if m:
+            return round(float(m.group(1)) * 128, 3), "fl_oz"
+        m = re.search(r"(\d+(?:\.\d+)?)\s*fl\s*oz\b", t)
+        if m:
+            return float(m.group(1)), "fl_oz"
+        # Giant often labels liquid oil simply as oz.
+        m = re.search(r"(\d+(?:\.\d+)?)\s*oz\s*(?:btl|bottle)?\b", t)
+        if m:
+            return float(m.group(1)), "fl_oz"
+    elif expected_unit == "oz":
+        m = re.search(r"(\d+(?:\.\d+)?)\s*(?:oz|ounce)\b", t)
+        if m:
+            return float(m.group(1)), "oz"
+    elif expected_unit == "count":
+        m = re.search(r"(\d+(?:\.\d+)?)\s*(?:ct|count|each|ea)\b", t)
+        if m:
+            return float(m.group(1)), "count"
+        m = re.search(r"(\d+(?:\.\d+)?)\s*doz\b", t)
+        if m:
+            return float(m.group(1)) * 12, "count"
+    return None, None
+
+
+def verify_package(text, cfg):
+    expected_qty, expected_unit = package_from_config(cfg)
+    if cfg.get("price_mode") == "per_lb":
+        return expected_qty, expected_unit
+    qty, unit = observed_package(text, expected_unit)
+    if qty is None:
+        raise RuntimeError("Could not verify package size from product page")
+    tolerance = max(0.05, expected_qty * 0.02)
+    if unit != expected_unit or abs(qty - expected_qty) > tolerance:
+        raise RuntimeError(
+            f"Package mismatch: expected {expected_qty:g} {expected_unit}, page shows {qty:g} {unit}"
+        )
+    return expected_qty, expected_unit
+
+
 async def body_text(page):
     await page.wait_for_timeout(1000)
     return await page.locator("body").inner_text()
@@ -115,12 +138,9 @@ async def choose_link(page, query, href_fragment, must_include=None):
     n = min(await links.count(), 40)
     if not n:
         return None
-
     tokens = [x.lower() for x in re.findall(r"[A-Za-z0-9]+", query) if len(x) > 2]
     must_include = [x.lower() for x in (must_include or [])]
-    best = None
-    best_score = -1
-
+    best, best_score = None, -1
     for i in range(n):
         link = links.nth(i)
         try:
@@ -130,15 +150,12 @@ async def choose_link(page, query, href_fragment, must_include=None):
             continue
         if not href:
             continue
-
         haystack = f"{txt} {href}".lower()
         if must_include and not all(term in haystack for term in must_include):
             continue
-
         score = sum(tok in haystack for tok in tokens)
         if score > best_score:
             best, best_score = href, score
-
     return best
 
 
@@ -154,21 +171,12 @@ async def collect_aldi(context, product):
         if price is None:
             raise RuntimeError("No ALDI price found")
         validate_price(product["product"], price)
-
-        # ALDI uses exact product URLs in products.json. The intended package is
-        # already known, so do not let unrelated page text overwrite it.
         qty, unit = package_from_config(cfg)
-
         return {
-            "store": "ALDI",
-            "product": product["product"],
-            "package_qty": qty,
-            "package_unit": unit,
-            "price": price,
-            "original_price": original,
+            "store": "ALDI", "product": product["product"], "package_qty": qty,
+            "package_unit": unit, "price": price, "original_price": original,
             "promo": ("Price drop" if original and original > price else ""),
-            "price_type": "ONLINE_LOCALIZED",
-            "source_url": page.url,
+            "price_type": "ONLINE_LOCALIZED", "source_url": page.url,
             "variant_note": cfg.get("note", "")
         }
     finally:
@@ -215,40 +223,34 @@ async def collect_giant(context, product):
     page = await context.new_page()
     try:
         await set_giant_store(page)
-        url = "https://giantfood.com/product-search/" + quote(cfg["query"])
-        await page.goto(url, wait_until="domcontentloaded", timeout=60000)
-        await dismiss_common(page)
-        await page.wait_for_timeout(1800)
-        href = await choose_link(
-            page,
-            cfg["query"],
-            "/groceries/product/",
-            required_terms(product["product"]),
-        )
+        href = cfg.get("url")
         if not href:
-            raise RuntimeError("No trustworthy Giant product link found")
-        if href.startswith("/"):
-            href = "https://giantfood.com" + href
+            search_url = "https://giantfood.com/product-search/" + quote(cfg["query"])
+            await page.goto(search_url, wait_until="domcontentloaded", timeout=60000)
+            await dismiss_common(page)
+            await page.wait_for_timeout(1800)
+            href = await choose_link(page, cfg["query"], "/groceries/product/", required_terms(product["product"]))
+            if not href:
+                raise RuntimeError("No trustworthy Giant product link found")
+            if href.startswith("/"):
+                href = "https://giantfood.com" + href
         await page.goto(href, wait_until="domcontentloaded", timeout=60000)
-        await page.wait_for_timeout(1600)
+        await dismiss_common(page)
         text = await body_text(page)
+        if not all(term in text.lower() for term in required_terms(product["product"])):
+            raise RuntimeError("Giant product page failed identity check")
         if "See Best Price" in text and len(MONEY.findall(text)) <= 1:
             raise RuntimeError("Giant did not expose a localized price to this session")
         price, original = parse_price(text, cfg.get("price_mode", "package"))
         if price is None:
             raise RuntimeError("No Giant price found")
         validate_price(product["product"], price)
-        qty, unit = package_from_config(cfg)
+        qty, unit = verify_package(text, cfg)
         return {
-            "store": "Giant",
-            "product": product["product"],
-            "package_qty": qty,
-            "package_unit": unit,
-            "price": price,
-            "original_price": original,
+            "store": "Giant", "product": product["product"], "package_qty": qty,
+            "package_unit": unit, "price": price, "original_price": original,
             "promo": ("Sale" if original and original > price else ""),
-            "price_type": "ONLINE_LOCALIZED",
-            "source_url": page.url
+            "price_type": "ONLINE_LOCALIZED", "source_url": page.url
         }
     finally:
         await page.close()
@@ -292,35 +294,29 @@ async def collect_wegmans(context, product):
     page = await context.new_page()
     try:
         await set_wegmans_store(page)
-        await wegmans_search(page, cfg["query"])
-        href = await choose_link(
-            page,
-            cfg["query"],
-            "/shop/product/",
-            required_terms(product["product"]),
-        )
+        href = cfg.get("url")
         if not href:
-            raise RuntimeError("No trustworthy Wegmans product link found")
-        if href.startswith("/"):
-            href = "https://www.wegmans.com" + href
+            await wegmans_search(page, cfg["query"])
+            href = await choose_link(page, cfg["query"], "/shop/product/", required_terms(product["product"]))
+            if not href:
+                raise RuntimeError("No trustworthy Wegmans product link found")
+            if href.startswith("/"):
+                href = "https://www.wegmans.com" + href
         await page.goto(href, wait_until="domcontentloaded", timeout=60000)
-        await page.wait_for_timeout(1800)
+        await dismiss_common(page)
         text = await body_text(page)
+        if not all(term in text.lower() for term in required_terms(product["product"])):
+            raise RuntimeError("Wegmans product page failed identity check")
         price, original = parse_price(text, cfg.get("price_mode", "package"))
         if price is None:
             raise RuntimeError("Wegmans did not expose a price after store selection")
         validate_price(product["product"], price)
-        qty, unit = package_from_config(cfg)
+        qty, unit = verify_package(text, cfg)
         return {
-            "store": "Wegmans",
-            "product": product["product"],
-            "package_qty": qty,
-            "package_unit": unit,
-            "price": price,
-            "original_price": original,
+            "store": "Wegmans", "product": product["product"], "package_qty": qty,
+            "package_unit": unit, "price": price, "original_price": original,
             "promo": ("Sale" if original and original > price else ""),
-            "price_type": "ONLINE_LOCALIZED",
-            "source_url": page.url
+            "price_type": "ONLINE_LOCALIZED", "source_url": page.url
         }
     finally:
         await page.close()
@@ -329,12 +325,10 @@ async def collect_wegmans(context, product):
 async def main():
     offers = []
     failures = {"Wegmans": [], "Giant": [], "ALDI": []}
-
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)
         context = await browser.new_context(
-            locale="en-US",
-            timezone_id="America/New_York",
+            locale="en-US", timezone_id="America/New_York",
             user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/128 Safari/537.36"
         )
         collectors = {"ALDI": collect_aldi, "Giant": collect_giant, "Wegmans": collect_wegmans}
@@ -364,9 +358,7 @@ async def main():
 
     payload = {
         "updated_at": datetime.now(timezone.utc).isoformat(),
-        "zip_code": CONFIG["zip_code"],
-        "offers": offers,
-        "status": status
+        "zip_code": CONFIG["zip_code"], "offers": offers, "status": status
     }
     OUT.write_text(json.dumps(payload, indent=2), encoding="utf-8")
     print(f"Wrote {OUT} with {len(offers)} offers")
