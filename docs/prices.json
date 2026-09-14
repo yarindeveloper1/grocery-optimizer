@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-14T13:33:15.565670+00:00",
+  "updated_at": "2026-09-14T13:44:58.105779+00:00",
   "zip_code": "20016",
   "offers": [
     {
@@ -7,12 +7,12 @@
       "product": "Eggs",
       "package_qty": 18.0,
       "package_unit": "count",
-      "price": 2.19,
+      "price": 1.69,
       "original_price": null,
       "promo": "",
       "price_type": "ONLINE_LOCALIZED",
       "source_url": "https://www.wegmans.com/shop/product/46155-Grade-AA-Large-Eggs-18-Count",
-      "captured_at": "2026-09-14T13:31:07.723147+00:00"
+      "captured_at": "2026-09-14T13:43:10.407074+00:00"
     },
     {
       "store": "Wegmans",
@@ -24,7 +24,7 @@
       "promo": "",
       "price_type": "ONLINE_LOCALIZED",
       "source_url": "https://www.wegmans.com/shop/product/94427-Vitamin-D-Whole-Milk",
-      "captured_at": "2026-09-14T13:31:13.414378+00:00"
+      "captured_at": "2026-09-14T13:43:16.113372+00:00"
     },
     {
       "store": "Wegmans",
@@ -36,7 +36,7 @@
       "promo": "",
       "price_type": "ONLINE_LOCALIZED",
       "source_url": "https://www.wegmans.com/shop/product/92685-Bananas-Sold-by-the-Each",
-      "captured_at": "2026-09-14T13:31:19.643068+00:00"
+      "captured_at": "2026-09-14T13:43:21.791022+00:00"
     },
     {
       "store": "Wegmans",
@@ -48,7 +48,7 @@
       "promo": "",
       "price_type": "ONLINE_LOCALIZED",
       "source_url": "https://www.wegmans.com/shop/product/57084-Boneless-Skinless-Chicken-Breasts-with-Rib-Meat-FAMILY-PACK",
-      "captured_at": "2026-09-14T13:31:25.214206+00:00"
+      "captured_at": "2026-09-14T13:43:28.135550+00:00"
     },
     {
       "store": "Wegmans",
@@ -60,7 +60,7 @@
       "promo": "",
       "price_type": "ONLINE_LOCALIZED",
       "source_url": "https://www.wegmans.com/shop/product/37906-5-Greek-Plain-Whole-Milk-Yogurt",
-      "captured_at": "2026-09-14T13:31:31.146904+00:00"
+      "captured_at": "2026-09-14T13:43:34.559046+00:00"
     },
     {
       "store": "Wegmans",
@@ -72,7 +72,7 @@
       "promo": "",
       "price_type": "ONLINE_LOCALIZED",
       "source_url": "https://www.wegmans.com/shop/product/357243-Fresh-Atlantic-Salmon-Fillet-packaged-Farm-Raised-Product-of-CanadaNorway-Processed-in-USA",
-      "captured_at": "2026-09-14T13:31:36.808396+00:00"
+      "captured_at": "2026-09-14T13:43:40.649145+00:00"
     },
     {
       "store": "Wegmans",
@@ -84,7 +84,7 @@
       "promo": "",
       "price_type": "ONLINE_LOCALIZED",
       "source_url": "https://www.wegmans.com/shop/product/51429-Avocados-Bagged-FAMILY-PACK",
-      "captured_at": "2026-09-14T13:31:42.171925+00:00"
+      "captured_at": "2026-09-14T13:43:47.708169+00:00"
     },
     {
       "store": "Wegmans",
@@ -96,7 +96,7 @@
       "promo": "",
       "price_type": "ONLINE_LOCALIZED",
       "source_url": "https://www.wegmans.com/shop/product/38346",
-      "captured_at": "2026-09-14T13:31:47.537186+00:00"
+      "captured_at": "2026-09-14T13:43:54.070819+00:00"
     },
     {
       "store": "Lidl",
@@ -109,7 +109,7 @@
       "price_type": "ONLINE_STORE_PAGE",
       "source_url": "https://www.lidl.com/p/large-cage-free-brown-eggs-grade-a/p11238869",
       "variant_note": "",
-      "captured_at": "2026-09-14T13:31:57.650900+00:00"
+      "captured_at": "2026-09-14T13:44:04.836433+00:00"
     },
     {
       "store": "Lidl",
@@ -122,7 +122,7 @@
       "price_type": "ONLINE_STORE_PAGE",
       "source_url": "https://www.lidl.com/p/lidl-whole-milk/p11237181",
       "variant_note": "Lidl mapping uses the 64 fl oz whole-milk package; optimizer buys two when 1 gallon is needed.",
-      "captured_at": "2026-09-14T13:32:05.978436+00:00"
+      "captured_at": "2026-09-14T13:44:12.059099+00:00"
     },
     {
       "store": "Lidl",
@@ -135,7 +135,7 @@
       "price_type": "ONLINE_STORE_PAGE",
       "source_url": "https://www.lidl.com/p/bananas/p11242690",
       "variant_note": "",
-      "captured_at": "2026-09-14T13:32:14.315829+00:00"
+      "captured_at": "2026-09-14T13:44:19.886784+00:00"
     },
     {
       "store": "Lidl",
@@ -148,7 +148,7 @@
       "price_type": "ONLINE_STORE_PAGE",
       "source_url": "https://www.lidl.com/p/boneless-skinless-chicken-breast-family-pack/p11247136",
       "variant_note": "",
-      "captured_at": "2026-09-14T13:32:21.617532+00:00"
+      "captured_at": "2026-09-14T13:44:27.404081+00:00"
     },
     {
       "store": "Lidl",
@@ -161,7 +161,7 @@
       "price_type": "ONLINE_STORE_PAGE",
       "source_url": "https://www.lidl.com/p/nonfat-greek-yogurt-plain/p11238026",
       "variant_note": "Lidl mapping is plain nonfat Greek yogurt because a directly comparable plain whole-milk 32 oz listing was not found.",
-      "captured_at": "2026-09-14T13:32:28.946508+00:00"
+      "captured_at": "2026-09-14T13:44:35.418455+00:00"
     },
     {
       "store": "Lidl",
@@ -174,7 +174,7 @@
       "price_type": "ONLINE_STORE_PAGE",
       "source_url": "https://www.lidl.com/p/fish-market-chilean-atlantic-salmon-whole-fillet-skin-on/p11239802",
       "variant_note": "",
-      "captured_at": "2026-09-14T13:32:36.027908+00:00"
+      "captured_at": "2026-09-14T13:44:43.023134+00:00"
     },
     {
       "store": "Lidl",
@@ -187,7 +187,7 @@
       "price_type": "ONLINE_STORE_PAGE",
       "source_url": "https://www.lidl.com/p/extra-virgin-olive-oil/p11240302",
       "variant_note": "Lidl mapping uses a 25.3 fl oz bottle; optimizer accounts for needing two bottles to cover 33.8 fl oz.",
-      "captured_at": "2026-09-14T13:32:51.145340+00:00"
+      "captured_at": "2026-09-14T13:44:58.011908+00:00"
     }
   ],
   "status": {
@@ -213,14 +213,14 @@
       "products_requested": 8,
       "message": "0/8 products collected",
       "errors": [
-        "Eggs: Page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.harristeeter.com/stores/search\nCall log:\n  - navigating to \"https://www.harristeeter.com/stores/search\", waiting until \"commit\"\n",
-        "Milk: Page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.harristeeter.com/stores/search\nCall log:\n  - navigating to \"https://www.harristeeter.com/stores/search\", waiting until \"commit\"\n",
-        "Bananas: Page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.harristeeter.com/stores/search\nCall log:\n  - navigating to \"https://www.harristeeter.com/stores/search\", waiting until \"commit\"\n",
-        "Chicken breast: Page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.harristeeter.com/stores/search\nCall log:\n  - navigating to \"https://www.harristeeter.com/stores/search\", waiting until \"commit\"\n",
-        "Greek yogurt: Page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.harristeeter.com/stores/search\nCall log:\n  - navigating to \"https://www.harristeeter.com/stores/search\", waiting until \"commit\"\n",
-        "Salmon: Page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.harristeeter.com/stores/search\nCall log:\n  - navigating to \"https://www.harristeeter.com/stores/search\", waiting until \"commit\"\n",
-        "Avocados: Page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.harristeeter.com/stores/search\nCall log:\n  - navigating to \"https://www.harristeeter.com/stores/search\", waiting until \"commit\"\n",
-        "Olive oil: Page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.harristeeter.com/stores/search\nCall log:\n  - navigating to \"https://www.harristeeter.com/stores/search\", waiting until \"commit\"\n"
+        "Eggs: Kroger API credentials not configured",
+        "Milk: Kroger API credentials not configured",
+        "Bananas: Kroger API credentials not configured",
+        "Chicken breast: Kroger API credentials not configured",
+        "Greek yogurt: Kroger API credentials not configured",
+        "Salmon: Kroger API credentials not configured",
+        "Avocados: Kroger API credentials not configured",
+        "Olive oil: Kroger API credentials not configured"
       ]
     }
   }
