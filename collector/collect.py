@@ -38,15 +38,24 @@ def package_from_config(cfg):
     return float(cfg["fallback_qty"]), cfg["fallback_unit"]
 
 
-def validate_price(name, price):
-    lo, hi = PRICE_LIMITS.get(name, (0.05, 500.0))
+def validate_price(product, price):
+    name = product["product"]
+    configured = product.get("price_limits")
+    if configured and len(configured) == 2:
+        lo, hi = float(configured[0]), float(configured[1])
+    else:
+        lo, hi = PRICE_LIMITS.get(name, (0.05, 500.0))
     if not lo <= price <= hi:
         raise RuntimeError(f"Suspicious price ${price:.2f} for {name}")
 
 
-def identity_check(text, name, store):
+def identity_check(text, product, store):
+    name = product["product"]
+    terms = product.get("identity_terms") or REQUIRED_TERMS.get(name, [])
+    if not terms:
+        raise RuntimeError(f"No identity validation terms configured for {name}")
     hay = text[:10000].lower()
-    if not all(term in hay for term in REQUIRED_TERMS.get(name, [])):
+    if not all(str(term).lower() in hay for term in terms):
         raise RuntimeError(f"{store} product failed identity check")
 
 
@@ -181,11 +190,11 @@ async def collect_wegmans(context, product):
         await safe_goto(page, cfg["url"])
         await dismiss_common(page)
         text = await body_text(page)
-        identity_check(text, product["product"], "Wegmans")
+        identity_check(text, product, "Wegmans")
         price, original = parse_standard_price(text, cfg.get("price_mode", "package"))
         if price is None:
             raise RuntimeError("Wegmans did not expose a price after store selection")
-        validate_price(product["product"], price)
+        validate_price(product, price)
         qty, unit = verify_package(text, cfg)
         return {
             "store": "Wegmans", "product": product["product"], "package_qty": qty,
@@ -218,11 +227,11 @@ async def collect_lidl(context, product):
         await dismiss_common(page)
         await page.wait_for_timeout(1800)
         text = await body_text(page)
-        identity_check(text + " " + cfg["url"] + " " + page.url, product["product"], "Lidl")
+        identity_check(text + " " + cfg["url"] + " " + page.url, product, "Lidl")
         price, original = parse_lidl_price(text, cfg.get("price_mode", "package"))
         if price is None:
             raise RuntimeError("Lidl did not expose a product price")
-        validate_price(product["product"], price)
+        validate_price(product, price)
         qty, unit = verify_package(text, cfg)
         return {
             "store": "Lidl", "product": product["product"], "package_qty": qty,
@@ -274,7 +283,7 @@ async def collect_target(context, product):
         await dismiss_common(page)
         await page.wait_for_timeout(1800)
         text = await body_text(page)
-        identity_check(text + " " + cfg.get("query", ""), product["product"], "Target")
+        identity_check(text + " " + cfg.get("query", ""), product, "Target")
         localized = await target_location_evidence(context, text)
         if not localized:
             cookie_diag = [(c.get("name"), str(c.get("value", ""))[:120]) for c in await context.cookies("https://www.target.com") if c.get("name") in {"fiatsCookie", "GuestLocation", "UserLocation"}]
@@ -285,7 +294,7 @@ async def collect_target(context, product):
         price, original = parse_target_price(text, cfg.get("price_mode", "package"))
         if price is None:
             raise RuntimeError("Target did not expose a product price")
-        validate_price(product["product"], price)
+        validate_price(product, price)
         qty, unit = verify_package(text, cfg)
         return {
             "store": "Target", "product": product["product"], "package_qty": qty,
