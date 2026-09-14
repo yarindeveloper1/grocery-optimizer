@@ -102,8 +102,6 @@ def parse_safeway_price(text, mode="package"):
     your = SAFEWAY_YOUR_PRICE.search(head)
     if your:
         return money(your.group(1)), money(member.group(1)) if member else None
-    # Deliberately do not fall back to the first dollar value. Safeway pages
-    # contain unrelated $25/$30 promotional banners before product pricing.
     return None, None
 
 
@@ -121,10 +119,12 @@ def observed_package(text, expected_unit):
         if m:
             return float(m.group(1)), "oz"
     elif expected_unit == "count":
-        m = re.search(r"(\d+(?:\.\d+)?)\s*(?:ct|count|piece|pieces|each|ea)\b", t)
+        # Count quantities must be whole numbers. This avoids interpreting
+        # price text such as "$2.99 each" as a 2.99-count package.
+        m = re.search(r"(?<![\d.])(\d+)\s*(?:ct|count|piece|pieces|each|ea)\b", t)
         if m:
             return float(m.group(1)), "count"
-        m = re.search(r"(\d+(?:\.\d+)?)\s*doz\b", t)
+        m = re.search(r"(?<![\d.])(\d+)\s*doz\b", t)
         if m:
             return float(m.group(1)) * 12, "count"
     return None, None
@@ -210,8 +210,6 @@ async def set_lidl_store(page):
             selected = True
     except Exception:
         pass
-    # The store page itself is also a useful localization signal. Product pages
-    # can expose public shelf prices even when the favorite-store control is hidden.
     return selected
 
 
@@ -222,8 +220,11 @@ async def collect_lidl(context, product):
         await set_lidl_store(page)
         await page.goto(cfg["url"], wait_until="domcontentloaded", timeout=60000)
         await dismiss_common(page)
+        await page.wait_for_timeout(1800)
         text = await body_text(page)
-        identity_check(text, product["product"], "Lidl")
+        # Lidl occasionally renders product identity late in the body. The exact
+        # configured product URL is also trusted identity evidence.
+        identity_check(text + " " + page.url, product["product"], "Lidl")
         price, original = parse_lidl_price(text, cfg.get("price_mode", "package"))
         if price is None:
             raise RuntimeError("Lidl did not expose a product price")
@@ -278,8 +279,6 @@ async def collect_safeway(context, product):
         await page.close()
 
 
-# Kept temporarily so the collector remains backward compatible during the
-# transition commit from ALDI/Giant to Lidl/Safeway.
 async def collect_aldi(context, product):
     cfg = product["ALDI"]
     url = cfg["url"] + ("&" if "?" in cfg["url"] else "?") + f"service=delivery&zipcode={CONFIG['zip_code']}"
