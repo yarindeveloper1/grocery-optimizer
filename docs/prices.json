@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-14T16:30:27.561755+00:00",
+  "updated_at": "2026-09-14T16:36:24.642132+00:00",
   "zip_code": "20016",
   "offers": [
     {
@@ -12,7 +12,7 @@
       "promo": "",
       "price_type": "ONLINE_LOCALIZED",
       "source_url": "https://www.wegmans.com/shop/product/46155-Grade-AA-Large-Eggs-18-Count",
-      "captured_at": "2026-09-14T16:27:48.843461+00:00"
+      "captured_at": "2026-09-14T16:32:58.965649+00:00"
     },
     {
       "store": "Wegmans",
@@ -24,7 +24,7 @@
       "promo": "",
       "price_type": "ONLINE_LOCALIZED",
       "source_url": "https://www.wegmans.com/shop/product/94427-Vitamin-D-Whole-Milk",
-      "captured_at": "2026-09-14T16:27:55.324910+00:00"
+      "captured_at": "2026-09-14T16:33:05.562936+00:00"
     },
     {
       "store": "Wegmans",
@@ -36,7 +36,7 @@
       "promo": "",
       "price_type": "ONLINE_LOCALIZED",
       "source_url": "https://www.wegmans.com/shop/product/92685-Bananas-Sold-by-the-Each",
-      "captured_at": "2026-09-14T16:28:01.574587+00:00"
+      "captured_at": "2026-09-14T16:33:12.160700+00:00"
     },
     {
       "store": "Wegmans",
@@ -48,7 +48,7 @@
       "promo": "",
       "price_type": "ONLINE_LOCALIZED",
       "source_url": "https://www.wegmans.com/shop/product/57084-Boneless-Skinless-Chicken-Breasts-with-Rib-Meat-FAMILY-PACK",
-      "captured_at": "2026-09-14T16:28:07.877755+00:00"
+      "captured_at": "2026-09-14T16:33:18.833428+00:00"
     },
     {
       "store": "Wegmans",
@@ -60,7 +60,7 @@
       "promo": "",
       "price_type": "ONLINE_LOCALIZED",
       "source_url": "https://www.wegmans.com/shop/product/37906-5-Greek-Plain-Whole-Milk-Yogurt",
-      "captured_at": "2026-09-14T16:28:14.314528+00:00"
+      "captured_at": "2026-09-14T16:33:24.635199+00:00"
     },
     {
       "store": "Wegmans",
@@ -72,7 +72,7 @@
       "promo": "",
       "price_type": "ONLINE_LOCALIZED",
       "source_url": "https://www.wegmans.com/shop/product/357243-Fresh-Atlantic-Salmon-Fillet-packaged-Farm-Raised-Product-of-CanadaNorway-Processed-in-USA",
-      "captured_at": "2026-09-14T16:28:20.137199+00:00"
+      "captured_at": "2026-09-14T16:33:30.432528+00:00"
     },
     {
       "store": "Wegmans",
@@ -84,7 +84,7 @@
       "promo": "",
       "price_type": "ONLINE_LOCALIZED",
       "source_url": "https://www.wegmans.com/shop/product/51429-Avocados-Bagged-FAMILY-PACK",
-      "captured_at": "2026-09-14T16:28:25.790701+00:00"
+      "captured_at": "2026-09-14T16:33:36.581084+00:00"
     },
     {
       "store": "Wegmans",
@@ -96,7 +96,7 @@
       "promo": "",
       "price_type": "ONLINE_LOCALIZED",
       "source_url": "https://www.wegmans.com/shop/product/38346",
-      "captured_at": "2026-09-14T16:28:31.569244+00:00"
+      "captured_at": "2026-09-14T16:33:43.480352+00:00"
     },
     {
       "store": "Lidl",
@@ -109,33 +109,33 @@
       "price_type": "ONLINE_STORE_PAGE",
       "source_url": "https://www.lidl.com/p/large-cage-free-brown-eggs-grade-a/p11238869",
       "variant_note": "",
-      "captured_at": "2026-09-14T16:28:40.704769+00:00"
+      "captured_at": "2026-09-14T16:33:52.725545+00:00"
     },
     {
       "store": "Lidl",
       "product": "Milk",
       "package_qty": 64.0,
       "package_unit": "fl_oz",
-      "price": 1.78,
+      "price": 1.76,
       "original_price": null,
       "promo": "",
       "price_type": "ONLINE_STORE_PAGE",
       "source_url": "https://www.lidl.com/p/lidl-whole-milk/p11237181",
       "variant_note": "Lidl mapping uses the 64 fl oz whole-milk package; optimizer buys two when 1 gallon is needed.",
-      "captured_at": "2026-09-14T16:28:49.327247+00:00"
+      "captured_at": "2026-09-14T16:34:02.643178+00:00"
     },
     {
       "store": "Lidl",
       "product": "Bananas",
       "package_qty": 1.0,
       "package_unit": "lb",
-      "price": 0.5,
+      "price": 0.49,
       "original_price": null,
       "promo": "",
       "price_type": "ONLINE_STORE_PAGE",
       "source_url": "https://www.lidl.com/p/bananas/p11242690",
       "variant_note": "",
-      "captured_at": "2026-09-14T16:28:58.412326+00:00"
+      "captured_at": "2026-09-14T16:34:09.940644+00:00"
     },
     {
       "store": "Lidl",
@@ -148,7 +148,7 @@
       "price_type": "ONLINE_STORE_PAGE",
       "source_url": "https://www.lidl.com/p/boneless-skinless-chicken-breast-family-pack/p11247136",
       "variant_note": "",
-      "captured_at": "2026-09-14T16:29:05.586660+00:00"
+      "captured_at": "2026-09-14T16:34:17.602890+00:00"
     },
     {
       "store": "Lidl",
@@ -161,7 +161,7 @@
       "price_type": "ONLINE_STORE_PAGE",
       "source_url": "https://www.lidl.com/p/nonfat-greek-yogurt-plain/p11238026",
       "variant_note": "Lidl mapping is plain nonfat Greek yogurt because a directly comparable plain whole-milk 32 oz listing was not found.",
-      "captured_at": "2026-09-14T16:29:12.997900+00:00"
+      "captured_at": "2026-09-14T16:34:24.712663+00:00"
     },
     {
       "store": "Lidl",
@@ -174,7 +174,7 @@
       "price_type": "ONLINE_STORE_PAGE",
       "source_url": "https://www.lidl.com/p/fish-market-chilean-atlantic-salmon-whole-fillet-skin-on/p11239802",
       "variant_note": "",
-      "captured_at": "2026-09-14T16:29:20.291925+00:00"
+      "captured_at": "2026-09-14T16:34:32.380122+00:00"
     },
     {
       "store": "Lidl",
@@ -187,7 +187,111 @@
       "price_type": "ONLINE_STORE_PAGE",
       "source_url": "https://www.lidl.com/p/extra-virgin-olive-oil/p11240302",
       "variant_note": "Lidl mapping uses a 25.3 fl oz bottle; optimizer accounts for needing two bottles to cover 33.8 fl oz.",
-      "captured_at": "2026-09-14T16:29:35.334325+00:00"
+      "captured_at": "2026-09-14T16:34:50.603695+00:00"
+    },
+    {
+      "store": "Target",
+      "product": "Eggs",
+      "package_qty": 12.0,
+      "package_unit": "count",
+      "price": 2.89,
+      "original_price": null,
+      "promo": "",
+      "price_type": "ONLINE_LOCALIZED",
+      "source_url": "https://www.target.com/p/-/A-14662561",
+      "variant_note": "",
+      "captured_at": "2026-09-14T16:35:03.185729+00:00"
+    },
+    {
+      "store": "Target",
+      "product": "Milk",
+      "package_qty": 128.0,
+      "package_unit": "fl_oz",
+      "price": 2.99,
+      "original_price": 3.69,
+      "promo": "Sale",
+      "price_type": "ONLINE_LOCALIZED",
+      "source_url": "https://www.target.com/p/-/A-13276134",
+      "variant_note": "",
+      "captured_at": "2026-09-14T16:35:15.011275+00:00"
+    },
+    {
+      "store": "Target",
+      "product": "Bananas",
+      "package_qty": 2.0,
+      "package_unit": "lb",
+      "price": 1.89,
+      "original_price": null,
+      "promo": "",
+      "price_type": "ONLINE_LOCALIZED",
+      "source_url": "https://www.target.com/p/-/A-85759852",
+      "variant_note": "Target sells its regular banana by the each; the 2 lb organic bag is used so the optimizer can compare a verified weight package.",
+      "captured_at": "2026-09-14T16:35:26.680523+00:00"
+    },
+    {
+      "store": "Target",
+      "product": "Chicken breast",
+      "package_qty": 1.0,
+      "package_unit": "lb",
+      "price": 3.99,
+      "original_price": null,
+      "promo": "",
+      "price_type": "ONLINE_LOCALIZED",
+      "source_url": "https://www.target.com/p/-/A-87544735",
+      "variant_note": "",
+      "captured_at": "2026-09-14T16:35:38.746060+00:00"
+    },
+    {
+      "store": "Target",
+      "product": "Greek yogurt",
+      "package_qty": 32.0,
+      "package_unit": "oz",
+      "price": 3.79,
+      "original_price": 3.99,
+      "promo": "Sale",
+      "price_type": "ONLINE_LOCALIZED",
+      "source_url": "https://www.target.com/p/-/A-78362089",
+      "variant_note": "",
+      "captured_at": "2026-09-14T16:35:50.423829+00:00"
+    },
+    {
+      "store": "Target",
+      "product": "Salmon",
+      "package_qty": 10.0,
+      "package_unit": "oz",
+      "price": 9.99,
+      "original_price": null,
+      "promo": "",
+      "price_type": "ONLINE_LOCALIZED",
+      "source_url": "https://www.target.com/p/-/A-91121161",
+      "variant_note": "Target mapping uses a fresh 10 oz two-portion Atlantic salmon package; optimizer converts ounces to pounds.",
+      "captured_at": "2026-09-14T16:36:01.468927+00:00"
+    },
+    {
+      "store": "Target",
+      "product": "Avocados",
+      "package_qty": 4.0,
+      "package_unit": "count",
+      "price": 3.19,
+      "original_price": null,
+      "promo": "",
+      "price_type": "ONLINE_LOCALIZED",
+      "source_url": "https://www.target.com/p/-/A-81957708",
+      "variant_note": "",
+      "captured_at": "2026-09-14T16:36:13.379348+00:00"
+    },
+    {
+      "store": "Target",
+      "product": "Olive oil",
+      "package_qty": 33.8,
+      "package_unit": "fl_oz",
+      "price": 20.99,
+      "original_price": null,
+      "promo": "",
+      "price_type": "ONLINE_LOCALIZED",
+      "source_url": "https://www.target.com/p/-/A-50329343",
+      "variant_note": "",
+      "captured_at": "2026-09-14T16:36:24.521928+00:00"
     }
   ],
   "status": {
@@ -208,20 +312,11 @@
       ]
     },
     "Target": {
-      "ok": false,
-      "products_collected": 0,
+      "ok": true,
+      "products_collected": 8,
       "products_requested": 8,
-      "message": "0/8 products collected",
-      "errors": [
-        "Eggs: Could not verify Target DC Tenleytown localization",
-        "Milk: Could not verify Target DC Tenleytown localization",
-        "Bananas: Could not verify Target DC Tenleytown localization",
-        "Chicken breast: Target Tenleytown store page identity could not be verified",
-        "Greek yogurt: Target Tenleytown store page identity could not be verified",
-        "Salmon: Target Tenleytown store page identity could not be verified",
-        "Avocados: Target Tenleytown store page identity could not be verified",
-        "Olive oil: Target Tenleytown store page identity could not be verified"
-      ]
+      "message": "OK",
+      "errors": []
     }
   }
 }
