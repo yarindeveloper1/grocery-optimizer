@@ -23,10 +23,6 @@ jobs:
   collect:
     runs-on: ubuntu-latest
     timeout-minutes: 25
-    env:
-      KROGER_CLIENT_ID: ${{ secrets.KROGER_CLIENT_ID }}
-      KROGER_CLIENT_SECRET: ${{ secrets.KROGER_CLIENT_SECRET }}
-      KROGER_SCOPE: product.compact
     steps:
       - uses: actions/checkout@v4
         with:
