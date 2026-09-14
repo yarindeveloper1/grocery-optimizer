@@ -82,6 +82,36 @@
       "Wegmans": {"query": "Wegmans Extra Virgin Olive Oil 33.8 fl oz", "url": "https://www.wegmans.com/shop/product/38346", "fallback_qty": 33.8, "fallback_unit": "fl_oz"},
       "Lidl": {"query": "extra virgin olive oil", "url": "https://www.lidl.com/p/extra-virgin-olive-oil/p11240302", "fallback_qty": 25.3, "fallback_unit": "fl_oz", "note": "Lidl mapping uses a 25.3 fl oz bottle; optimizer accounts for needing two bottles to cover 33.8 fl oz."},
       "Target": {"query": "California Olive Ranch Global Blend Extra Virgin Olive Oil 33.8 fl oz", "url": "https://www.target.com/p/-/A-50329343", "fallback_qty": 33.8, "fallback_unit": "fl_oz"}
+    },
+    {
+      "product": "Blueberries",
+      "need_qty": 1,
+      "need_unit": "lb",
+      "identity_terms": ["blueberr"],
+      "price_limits": [1.0, 25.0],
+      "Wegmans": {"query": "Blueberries FAMILY PACK 18 ounce", "url": "https://www.wegmans.com/shop/product/332997-Blueberries-FAMILY-PACK", "fallback_qty": 18, "fallback_unit": "oz"},
+      "Lidl": {"query": "blueberries family pack 18 oz", "url": "https://www.lidl.com/p/blueberries-family-pack-18-oz/p11241924", "fallback_qty": 18, "fallback_unit": "oz"},
+      "Target": {"query": "Fresh Blueberries 18oz", "url": "https://www.target.com/p/-/A-26397636", "fallback_qty": 18, "fallback_unit": "oz"}
+    },
+    {
+      "product": "Raspberries",
+      "need_qty": 1,
+      "need_unit": "lb",
+      "identity_terms": ["raspberr"],
+      "price_limits": [1.0, 25.0],
+      "Wegmans": {"query": "Raspberries 6 ounce", "url": "https://www.wegmans.com/shop/product/92942", "fallback_qty": 6, "fallback_unit": "oz"},
+      "Lidl": {"query": "raspberries 6 oz", "url": "https://www.lidl.com/p/raspberries-6-oz/p11242695", "fallback_qty": 6, "fallback_unit": "oz"},
+      "Target": {"query": "Raspberries 6oz", "url": "https://www.target.com/p/-/A-13208899", "fallback_qty": 6, "fallback_unit": "oz"}
+    },
+    {
+      "product": "Cheddar cheese",
+      "need_qty": 1,
+      "need_unit": "lb",
+      "identity_terms": ["cheddar", "cheese"],
+      "price_limits": [1.0, 25.0],
+      "Wegmans": {"query": "Wegmans Sharp Cheddar Cheese 8 ounce", "url": "https://www.wegmans.com/shop/product/83588", "fallback_qty": 8, "fallback_unit": "oz"},
+      "Lidl": {"query": "New York sharp cheddar cheese block 8 oz", "url": "https://www-new.lidl.com/p/new-york-sharp-cheddar-cheese-block/p11239385", "fallback_qty": 8, "fallback_unit": "oz"},
+      "Target": {"query": "Sharp Cheddar Cheese 8oz Good & Gather", "url": "https://www.target.com/p/-/A-54340519", "fallback_qty": 8, "fallback_unit": "oz"}
     }
   ]
 }
