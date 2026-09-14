@@ -74,7 +74,7 @@
       "need_unit": "count",
       "Wegmans": {"query": "Wegmans Avocados Bagged FAMILY PACK", "url": "https://www.wegmans.com/shop/product/51429-Avocados-Bagged-FAMILY-PACK", "fallback_qty": 4, "fallback_unit": "count"},
       "Lidl": {"query": "avocado", "url": "https://www.lidl.com/p/avocado/p11242029", "fallback_qty": 1, "fallback_unit": "count", "package_verified": true, "note": "Canonical Lidl product page identifies this item as 1 piece / 1 ct."},
-      "Safeway": {"query": "Medium Hass Avocado", "url": "https://www.safeway.com/shop/pd/medium-hass-avocado/184040105", "fallback_qty": 1, "fallback_unit": "count"}
+      "Safeway": {"query": "Medium Hass Avocado", "url": "https://www.safeway.com/shop/pd/medium-hass-avocado/184040105", "fallback_qty": 1, "fallback_unit": "count", "package_verified": true, "note": "Safeway identifies this mapped Medium Hass Avocado as one avocado sold each."}
     },
     {
       "product": "Olive oil",
