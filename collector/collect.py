@@ -145,6 +145,23 @@ def verify_package(text, cfg):
     return expected_qty, expected_unit
 
 
+def safeway_visible_diagnostics(text):
+    out = []
+    seen = set()
+    for raw in text.splitlines():
+        line = " ".join(raw.split())
+        low = line.lower()
+        if not line or not ("$" in line or "price" in low or "club" in low or "member" in low):
+            continue
+        line = line[:220]
+        if line not in seen:
+            seen.add(line)
+            out.append(line)
+        if len(out) >= 12:
+            break
+    return out
+
+
 async def body_text(page):
     await page.wait_for_timeout(1200)
     return await page.locator("body").inner_text()
@@ -177,8 +194,7 @@ async def collect_wegmans(context, product):
     page = await context.new_page()
     try:
         await set_wegmans_store(page)
-        href = cfg["url"]
-        await page.goto(href, wait_until="domcontentloaded", timeout=60000)
+        await page.goto(cfg["url"], wait_until="domcontentloaded", timeout=60000)
         await dismiss_common(page)
         text = await body_text(page)
         identity_check(text, product["product"], "Wegmans")
@@ -264,6 +280,9 @@ async def collect_safeway(context, product):
         identity_check(text, product["product"], "Safeway")
         price, original = parse_safeway_price(text, cfg.get("price_mode", "package"))
         if price is None:
+            print(f"DIAG Safeway {product['product']} URL: {page.url}")
+            for line in safeway_visible_diagnostics(text):
+                print(f"DIAG Safeway {product['product']}: {line}")
             raise RuntimeError("Safeway did not expose a localized product price")
         validate_price(product["product"], price)
         qty, unit = verify_package(text, cfg)
