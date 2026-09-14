@@ -236,42 +236,40 @@ async def collect_lidl(context, product):
 
 async def set_target_store(page):
     store = CONFIG["stores"]["Target"]
+    context = page.context
+    await safe_goto(page, "https://www.target.com/")
+    await context.add_cookies([
+        {"name": "fiatsCookie", "value": f"DSI_{store['store_number']}|DSN_DC%20Tenleytown|DSZ_20016", "domain": ".target.com", "path": "/"},
+        {"name": "GuestLocation", "value": "20016|38.949|-77.080|DC|US", "domain": ".target.com", "path": "/"},
+        {"name": "UserLocation", "value": "20016|38.949|-77.080|DC|US", "domain": ".target.com", "path": "/"},
+        {"name": "adScriptData", "value": "DC", "domain": ".target.com", "path": "/"},
+    ])
     await safe_goto(page, store["store_page"])
     await dismiss_common(page)
-    text = await body_text(page)
-    if "dc tenleytown" not in text.lower() or "4500 wisconsin" not in text.lower():
-        raise RuntimeError("Target Tenleytown store page identity could not be verified")
-    clicked = False
-    for pattern in [r"Start an order at\s*DC Tenleytown", r"Start an order"]:
-        try:
-            loc = page.get_by_text(re.compile(pattern, re.I)).first
-            if await loc.count():
-                await loc.click(timeout=4000)
-                await page.wait_for_timeout(1800)
-                clicked = True
-                break
-        except Exception:
-            pass
-    return clicked
+    await page.wait_for_timeout(1200)
+    cookies = await context.cookies("https://www.target.com")
+    fiat = next((str(c.get("value", "")) for c in cookies if c.get("name") == "fiatsCookie"), "")
+    if f"DSI_{store['store_number']}" not in fiat:
+        raise RuntimeError(f"Target overwrote Tenleytown store selection: {fiat or 'no fiatsCookie'}")
 
 
 async def target_location_evidence(context, text):
     hay = text[:14000].lower()
+    if "cheyenne" in hay or "pickup at cheyenne" in hay:
+        return False
     if "dc tenleytown" in hay or "4500 wisconsin" in hay:
         return True
     cookies = await context.cookies("https://www.target.com")
-    for c in cookies:
-        value = str(c.get("value", "")).lower()
-        if "3351" in value or "tenleytown" in value:
-            return True
-    return False
+    fiat = next((str(c.get("value", "")) for c in cookies if c.get("name") == "fiatsCookie"), "")
+    guest = next((str(c.get("value", "")) for c in cookies if c.get("name") == "GuestLocation"), "")
+    return "DSI_3351" in fiat and guest.startswith("20016|")
 
 
 async def collect_target(context, product):
     cfg = product["Target"]
     page = await context.new_page()
     try:
-        clicked = await set_target_store(page)
+        await set_target_store(page)
         await safe_goto(page, cfg["url"])
         await dismiss_common(page)
         await page.wait_for_timeout(1800)
@@ -279,10 +277,10 @@ async def collect_target(context, product):
         identity_check(text + " " + cfg.get("query", ""), product["product"], "Target")
         localized = await target_location_evidence(context, text)
         if not localized:
-            cookie_diag = [(c.get("name"), str(c.get("value", ""))[:120]) for c in await context.cookies("https://www.target.com")]
+            cookie_diag = [(c.get("name"), str(c.get("value", ""))[:120]) for c in await context.cookies("https://www.target.com") if c.get("name") in {"fiatsCookie", "GuestLocation", "UserLocation"}]
             header = " | ".join(x.strip() for x in text.splitlines()[:45] if x.strip())
-            print(f"DIAG Target {product['product']} clicked={clicked} header={header[:1200]}")
-            print(f"DIAG Target cookies={cookie_diag[:25]}")
+            print(f"DIAG Target {product['product']} header={header[:1400]}")
+            print(f"DIAG Target location cookies={cookie_diag}")
             raise RuntimeError("Could not verify Target DC Tenleytown localization")
         price, original = parse_target_price(text, cfg.get("price_mode", "package"))
         if price is None:
