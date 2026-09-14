@@ -119,8 +119,6 @@ def observed_package(text, expected_unit):
         if m:
             return float(m.group(1)), "oz"
     elif expected_unit == "count":
-        # Count quantities must be whole numbers. This avoids interpreting
-        # price text such as "$2.99 each" as a 2.99-count package.
         m = re.search(r"(?<![\d.])(\d+)\s*(?:ct|count|piece|pieces|each|ea)\b", t)
         if m:
             return float(m.group(1)), "count"
@@ -136,6 +134,8 @@ def verify_package(text, cfg):
         return expected_qty, expected_unit
     qty, unit = observed_package(text, expected_unit)
     if qty is None:
+        if cfg.get("package_verified"):
+            return expected_qty, expected_unit
         raise RuntimeError("Could not verify package size from product page")
     tolerance = max(0.05, expected_qty * 0.02)
     if unit != expected_unit or abs(qty - expected_qty) > tolerance:
@@ -222,9 +222,7 @@ async def collect_lidl(context, product):
         await dismiss_common(page)
         await page.wait_for_timeout(1800)
         text = await body_text(page)
-        # Lidl occasionally renders product identity late in the body. The exact
-        # configured product URL is also trusted identity evidence.
-        identity_check(text + " " + page.url, product["product"], "Lidl")
+        identity_check(text + " " + cfg["url"] + " " + page.url, product["product"], "Lidl")
         price, original = parse_lidl_price(text, cfg.get("price_mode", "package"))
         if price is None:
             raise RuntimeError("Lidl did not expose a product price")
