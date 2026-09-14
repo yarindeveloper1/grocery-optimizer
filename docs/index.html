@@ -19,6 +19,7 @@ button{font-weight:650}.primary{background:#111;color:#fff;border-color:#111}
 .status{padding:9px;background:#f4f4f4;border-radius:10px;font-size:12px}.ok{color:var(--good);font-weight:700}.bad{color:var(--bad);font-weight:700}
 .item{display:grid;grid-template-columns:1.65fr .7fr .8fr 42px;gap:6px;margin:7px 0}
 table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:8px 5px;border-bottom:1px solid #eee;text-align:left;vertical-align:top}th{color:#666}
+.unitprice{white-space:nowrap}
 .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.kpi{padding:10px;background:#f3f3f3;border-radius:10px}.kpi b{display:block;font-size:18px}
 footer{position:fixed;left:0;right:0;bottom:0;background:rgba(255,255,255,.96);border-top:1px solid #ddd;padding:10px 14px calc(10px + env(safe-area-inset-bottom))}
 footer>div{max-width:760px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -40,13 +41,15 @@ const BASE_LIST=[{product:"Eggs",need_qty:12,need_unit:"count"},{product:"Milk",
 const UNITS={count:["count",1],oz:["weight",1],lb:["weight",16],fl_oz:["volume",1]};
 let shopping=JSON.parse(localStorage.getItem("liveShopList")||"null")||structuredClone(BASE_LIST);let live={offers:[],status:{}};
 const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+const unitLabel=u=>u==="fl_oz"?"fl oz":u==="count"?"count":(u||"unit");
+function unitPrice(o){const p=Number(o.price),q=Number(o.package_qty);if(!Number.isFinite(p)||!Number.isFinite(q)||q<=0)return "—";const v=p/q;return `$${v.toFixed(v<0.1?3:2)}/${unitLabel(o.package_unit)}`}
 const opts=u=>["count","oz","lb","fl_oz"].map(x=>`<option value="${x}" ${x===u?"selected":""}>${x==="fl_oz"?"fl oz":x}</option>`).join("");
 function save(){localStorage.setItem("liveShopList",JSON.stringify(shopping))}
 function renderList(){const b=document.getElementById("list");b.innerHTML="";shopping.forEach((x,i)=>{const d=document.createElement("div");d.className="item";d.innerHTML=`<input value="${esc(x.product)}" oninput="shopping[${i}].product=this.value;save()"><input type="number" step=".1" value="${x.need_qty}" oninput="shopping[${i}].need_qty=Number(this.value);save()"><select onchange="shopping[${i}].need_unit=this.value;save()">${opts(x.need_unit)}</select><button onclick="shopping.splice(${i},1);save();renderList()">×</button>`;b.appendChild(d)})}
 function addItem(){shopping.push({product:"New item",need_qty:1,need_unit:"count"});save();renderList()}
 async function loadLive(force=false){const updated=document.getElementById("updated");updated.textContent="Loading…";try{const r=await fetch(`prices.json?ts=${force?Date.now():"1"}`,{cache:"no-store"});if(!r.ok)throw new Error("HTTP "+r.status);live=await r.json();updated.textContent=live.updated_at?`Updated ${new Date(live.updated_at).toLocaleString()}`:"Collector has not run yet";renderStatus();renderOffers()}catch(e){updated.textContent="Could not load live feed. Use the hosted GitHub Pages URL."}}
 function renderStatus(){const b=document.getElementById("statuses");b.innerHTML="";["Wegmans","Lidl","Target"].forEach(s=>{const x=live.status?.[s]||{ok:false,message:"No data"};b.innerHTML+=`<div class="status"><b>${s}</b><br><span class="${x.ok?"ok":"bad"}">${esc(x.message||"No data")}</span></div>`})}
-function renderOffers(){const b=document.getElementById("offersTable");if(!live.offers?.length){b.innerHTML='<div class="tiny">No live offers yet.</div>';return}let h="<table><thead><tr><th>Item</th><th>Store</th><th>Price</th><th>Package</th></tr></thead><tbody>";live.offers.forEach(o=>h+=`<tr><td>${esc(o.product)}</td><td>${esc(o.store)}</td><td>$${Number(o.price).toFixed(2)}${o.promo?`<br><span class="tiny">${esc(o.promo)}</span>`:""}</td><td>${o.package_qty} ${o.package_unit==="fl_oz"?"fl oz":o.package_unit}</td></tr>`);b.innerHTML=h+"</tbody></table>"}
+function renderOffers(){const b=document.getElementById("offersTable");if(!live.offers?.length){b.innerHTML='<div class="tiny">No live offers yet.</div>';return}let h="<table><thead><tr><th>Item</th><th>Store</th><th>Price</th><th>Unit price</th><th>Package</th></tr></thead><tbody>";live.offers.forEach(o=>h+=`<tr><td>${esc(o.product)}</td><td>${esc(o.store)}</td><td>$${Number(o.price).toFixed(2)}${o.promo?`<br><span class="tiny">${esc(o.promo)}</span>`:""}</td><td class="unitprice">${unitPrice(o)}</td><td>${o.package_qty} ${unitLabel(o.package_unit)}</td></tr>`);b.innerHTML=h+"</tbody></table>"}
 function base(q,u){const x=UNITS[u];return x?{g:x[0],q:Number(q)*x[1]}:null}
 function calc(n,o){const a=base(n.need_qty,n.need_unit),b=base(o.package_qty,o.package_unit);if(!a||!b||a.g!==b.g)return null;const packs=Math.max(1,Math.ceil(a.q/b.q));return {packs,total:packs*Number(o.price)}}
 function combinations(a,k){const out=[];function r(s,p){if(p.length===k){out.push([...p]);return}for(let i=s;i<a.length;i++){p.push(a[i]);r(i+1,p);p.pop()}}r(0,[]);return out}
