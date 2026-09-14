@@ -142,8 +142,20 @@ async def dismiss_common(page):
             pass
 
 
+async def safe_goto(page, url):
+    last = None
+    for wait in ["domcontentloaded", "commit"]:
+        try:
+            await page.goto(url, wait_until=wait, timeout=60000)
+            return
+        except Exception as e:
+            last = e
+            await page.wait_for_timeout(1000)
+    raise last
+
+
 async def set_wegmans_store(page):
-    await page.goto(CONFIG["stores"]["Wegmans"]["store_page"], wait_until="domcontentloaded", timeout=60000)
+    await safe_goto(page, CONFIG["stores"]["Wegmans"]["store_page"])
     await dismiss_common(page)
     try:
         btn = page.get_by_role("button", name=re.compile("Shop This Store", re.I)).first
@@ -159,7 +171,7 @@ async def collect_wegmans(context, product):
     page = await context.new_page()
     try:
         await set_wegmans_store(page)
-        await page.goto(cfg["url"], wait_until="domcontentloaded", timeout=60000)
+        await safe_goto(page, cfg["url"])
         await dismiss_common(page)
         text = await body_text(page)
         identity_check(text, product["product"], "Wegmans")
@@ -176,7 +188,7 @@ async def collect_wegmans(context, product):
 
 
 async def set_lidl_store(page):
-    await page.goto(CONFIG["stores"]["Lidl"]["store_page"], wait_until="domcontentloaded", timeout=60000)
+    await safe_goto(page, CONFIG["stores"]["Lidl"]["store_page"])
     await dismiss_common(page)
     try:
         loc = page.get_by_text(re.compile(r"^Set as favorite store$", re.I))
@@ -192,7 +204,7 @@ async def collect_lidl(context, product):
     page = await context.new_page()
     try:
         await set_lidl_store(page)
-        await page.goto(cfg["url"], wait_until="domcontentloaded", timeout=60000)
+        await safe_goto(page, cfg["url"])
         await dismiss_common(page)
         await page.wait_for_timeout(1800)
         text = await body_text(page)
@@ -211,27 +223,47 @@ async def collect_lidl(context, product):
 
 async def set_harris_teeter_store(page):
     store = CONFIG["stores"]["Harris Teeter"]
-    await page.goto(store["store_page"], wait_until="domcontentloaded", timeout=60000)
+    await safe_goto(page, "https://www.harristeeter.com/stores/search")
     await dismiss_common(page)
-    for label in ["Shop In Store", "Start Shopping", "Select Store", "Make this my store"]:
-        try:
-            loc = page.get_by_text(re.compile(f"^{re.escape(label)}$", re.I))
-            if await loc.count():
-                await loc.first.click(timeout=3000)
-                await page.wait_for_timeout(1500)
-                break
-        except Exception:
-            pass
+    search = page.get_by_placeholder(re.compile(r"45201|Cincinnati|City|ZIP", re.I)).first
+    if not await search.count():
+        raise RuntimeError("Harris Teeter store search input was not available")
+    await search.fill(store["zip_code"])
+    await search.press("Enter")
+    await page.wait_for_timeout(2500)
+    text = await body_text(page)
+    if "lee harrison" not in text.lower():
+        print(f"DIAG Harris Teeter store search: {text[:1200].replace(chr(10), ' | ')}")
+        raise RuntimeError("Lee Harrison not found in Harris Teeter store search")
+    clicked = False
+    try:
+        name = page.get_by_text(re.compile(r"^Lee Harrison$", re.I)).first
+        card = name.locator("xpath=ancestor::*[self::div or self::li or self::article][.//*[contains(normalize-space(.), 'Shop Pickup')]][1]")
+        if await card.count():
+            shop = card.get_by_text(re.compile(r"^Shop Pickup$", re.I)).first
+            if await shop.count():
+                await shop.click(timeout=4000)
+                clicked = True
+    except Exception:
+        pass
+    if not clicked:
+        shops = page.get_by_text(re.compile(r"^Shop Pickup$", re.I))
+        if await shops.count() == 1:
+            await shops.first.click(timeout=4000)
+            clicked = True
+    if not clicked:
+        raise RuntimeError("Could not select Lee Harrison pickup from store results")
+    await page.wait_for_timeout(2500)
 
 
 async def harris_location_evidence(context, text):
     hay = text[:12000].lower()
-    if "adams morgan" in hay or "1631 kalorama" in hay or "00231" in hay:
+    if "lee harrison" in hay or "2425 n harrison" in hay or "00023" in hay:
         return True
     cookies = await context.cookies("https://www.harristeeter.com")
     for c in cookies:
         value = str(c.get("value", "")).lower()
-        if "00231" in value or "adams" in value or "kalorama" in value:
+        if "00023" in value or "lee%20harrison" in value or "lee harrison" in value:
             return True
     return False
 
@@ -241,14 +273,15 @@ async def collect_harris_teeter(context, product):
     page = await context.new_page()
     try:
         await set_harris_teeter_store(page)
-        await page.goto(cfg["url"], wait_until="domcontentloaded", timeout=60000)
+        await safe_goto(page, cfg["url"])
         await dismiss_common(page)
         await page.wait_for_timeout(1800)
         text = await body_text(page)
         identity_check(text + " " + cfg["url"] + " " + page.url, product["product"], "Harris Teeter")
         if not await harris_location_evidence(context, text):
-            print(f"DIAG Harris Teeter {product['product']}: store localization not visible; URL={page.url}")
-            raise RuntimeError("Could not verify Adams Morgan store localization")
+            header = " | ".join(x.strip() for x in text.splitlines()[:35] if x.strip())
+            print(f"DIAG Harris Teeter {product['product']} location: {header[:1000]}")
+            raise RuntimeError("Could not verify Lee Harrison store localization")
         price, original = parse_harris_teeter_price(text, cfg.get("price_mode", "package"))
         if price is None:
             raise RuntimeError("Harris Teeter did not expose a product price")
