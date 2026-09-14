@@ -11,12 +11,11 @@
       "address": "4000 Wisconsin Ave NW, Suite 10, Washington, DC 20016",
       "store_page": "https://www.lidl.com/s/en-US/stores/washington/wisconsin-ave-nw-4000/"
     },
-    "Safeway": {
-      "store_name": "Wisconsin Ave NW",
-      "address": "1855 Wisconsin Ave NW, Washington, DC 20007",
-      "store_id": "2912",
-      "zip_code": "20007",
-      "store_page": "https://local.safeway.com/safeway/dc/washington/1855-wisconsin-ave-nw.html"
+    "Harris Teeter": {
+      "store_name": "Adams Morgan",
+      "address": "1631 Kalorama Rd NW, Washington, DC 20009",
+      "store_number": "00231",
+      "store_page": "https://www.harristeeter.com/stores/grocery/dc/washington/adams-morgan/097/00231"
     }
   },
   "products": [
@@ -26,7 +25,7 @@
       "need_unit": "count",
       "Wegmans": {"query": "Wegmans Grade AA Large Eggs 18 Count", "url": "https://www.wegmans.com/shop/product/46155-Grade-AA-Large-Eggs-18-Count", "fallback_qty": 18, "fallback_unit": "count"},
       "Lidl": {"query": "large cage free brown eggs grade A", "url": "https://www.lidl.com/p/large-cage-free-brown-eggs-grade-a/p11238869", "fallback_qty": 18, "fallback_unit": "count"},
-      "Safeway": {"query": "Lucerne Farms Eggs Large Cage Free 12 Count", "url": "https://www.safeway.com/shop/pd/lucerne-farms-eggs-large-cage-free-12-ct/960273951", "fallback_qty": 12, "fallback_unit": "count"}
+      "Harris Teeter": {"query": "Harris Teeter Large Grade A White Eggs", "url": "https://www.harristeeter.com/p/harris-teeter-large-grade-a-white-eggs/0007203663220?fulfillment=PICKUP", "fallback_qty": 12, "fallback_unit": "count"}
     },
     {
       "product": "Milk",
@@ -34,7 +33,7 @@
       "need_unit": "fl_oz",
       "Wegmans": {"query": "Wegmans Vitamin D Whole Milk 1 gallon", "url": "https://www.wegmans.com/shop/product/94427-Vitamin-D-Whole-Milk", "fallback_qty": 128, "fallback_unit": "fl_oz"},
       "Lidl": {"query": "Lidl whole milk", "url": "https://www.lidl.com/p/lidl-whole-milk/p11237181", "fallback_qty": 64, "fallback_unit": "fl_oz", "note": "Lidl mapping uses the 64 fl oz whole-milk package; optimizer buys two when 1 gallon is needed."},
-      "Safeway": {"query": "Lucerne Whole Milk 1 Gallon", "url": "https://www.safeway.com/shop/pd/lucerne-milk-whole-1-gallon-128-fl-oz/136010121", "fallback_qty": 128, "fallback_unit": "fl_oz"}
+      "Harris Teeter": {"query": "Harris Teeter Vitamin D Whole Milk Gallon", "url": "https://www.harristeeter.com/p/harris-teeter-vitamin-d-whole-milk-gallon/0007203673802?fulfillment=PICKUP", "fallback_qty": 128, "fallback_unit": "fl_oz"}
     },
     {
       "product": "Bananas",
@@ -42,7 +41,7 @@
       "need_unit": "lb",
       "Wegmans": {"query": "Bananas", "url": "https://www.wegmans.com/shop/product/92685-Bananas-Sold-by-the-Each", "fallback_qty": 1, "fallback_unit": "lb", "price_mode": "per_lb"},
       "Lidl": {"query": "bananas", "url": "https://www.lidl.com/p/bananas/p11242690", "fallback_qty": 1, "fallback_unit": "lb", "price_mode": "per_lb"},
-      "Safeway": {"query": "Banana", "url": "https://www.safeway.com/shop/pd/banana/184060007", "fallback_qty": 1, "fallback_unit": "lb", "price_mode": "per_lb"}
+      "Harris Teeter": {"query": "Fresh Bunch of Bananas", "url": "https://www.harristeeter.com/p/fresh-bunch-of-bananas-5-7-bananas/0000000004011?fulfillment=PICKUP", "fallback_qty": 1, "fallback_unit": "lb", "price_mode": "per_lb"}
     },
     {
       "product": "Chicken breast",
@@ -50,7 +49,7 @@
       "need_unit": "lb",
       "Wegmans": {"query": "Boneless Skinless Chicken Breast Family Pack", "url": "https://www.wegmans.com/shop/product/57084-Boneless-Skinless-Chicken-Breasts-with-Rib-Meat-FAMILY-PACK", "fallback_qty": 1, "fallback_unit": "lb", "price_mode": "per_lb"},
       "Lidl": {"query": "boneless skinless chicken breast family pack", "url": "https://www.lidl.com/p/boneless-skinless-chicken-breast-family-pack/p11247136", "fallback_qty": 1, "fallback_unit": "lb", "price_mode": "per_lb"},
-      "Safeway": {"query": "Chicken Breast Boneless Skinless", "url": "https://www.safeway.com/shop/pd/chicken-breast-boneless-skinless-2-00-lb/960082098", "fallback_qty": 1, "fallback_unit": "lb", "price_mode": "per_lb"}
+      "Harris Teeter": {"query": "Harris Teeter Boneless Chicken Breast Value Pack", "url": "https://www.harristeeter.com/p/harris-teeter-boneless-chicken-breast-value-pack/0020895500000?fulfillment=PICKUP", "fallback_qty": 1, "fallback_unit": "lb", "price_mode": "per_lb"}
     },
     {
       "product": "Greek yogurt",
@@ -58,7 +57,7 @@
       "need_unit": "oz",
       "Wegmans": {"query": "Wegmans 5% Greek Plain Whole Milk Yogurt", "url": "https://www.wegmans.com/shop/product/37906-5-Greek-Plain-Whole-Milk-Yogurt", "fallback_qty": 32, "fallback_unit": "oz"},
       "Lidl": {"query": "nonfat Greek yogurt plain", "url": "https://www.lidl.com/p/nonfat-greek-yogurt-plain/p11238026", "fallback_qty": 32, "fallback_unit": "oz", "note": "Lidl mapping is plain nonfat Greek yogurt because a directly comparable plain whole-milk 32 oz listing was not found."},
-      "Safeway": {"query": "FAGE Total 5% Plain Greek Yogurt 32 Oz", "url": "https://www.safeway.com/shop/pd/fage-total-5-percent-milkfat-plain-greek-yogurt-32-oz/960082464", "fallback_qty": 32, "fallback_unit": "oz"}
+      "Harris Teeter": {"query": "Harris Teeter Plain Whole Milk Greek Yogurt Tub", "url": "https://www.harristeeter.com/p/item/0007203672137?fulfillment=PICKUP", "fallback_qty": 32, "fallback_unit": "oz"}
     },
     {
       "product": "Salmon",
@@ -66,7 +65,7 @@
       "need_unit": "lb",
       "Wegmans": {"query": "Atlantic Salmon Fillet", "url": "https://www.wegmans.com/shop/product/357243-Fresh-Atlantic-Salmon-Fillet-packaged-Farm-Raised-Product-of-CanadaNorway-Processed-in-USA", "fallback_qty": 1, "fallback_unit": "lb", "price_mode": "per_lb"},
       "Lidl": {"query": "Chilean Atlantic salmon whole fillet skin on", "url": "https://www.lidl.com/p/fish-market-chilean-atlantic-salmon-whole-fillet-skin-on/p11239802", "fallback_qty": 1, "fallback_unit": "lb", "price_mode": "per_lb"},
-      "Safeway": {"query": "Atlantic Norwegian Salmon Fillet", "url": "https://www.safeway.com/shop/pd/seafood-counter-fish-salmon-atlantic-norwegian-fillet-color-added-fresh-1-00-lb/960096326", "fallback_qty": 1, "fallback_unit": "lb", "price_mode": "per_lb"}
+      "Harris Teeter": {"query": "Fresh Atlantic Farm Raised Whole Salmon Fillet", "url": "https://www.harristeeter.com/p/fresh-atlantic-whole-salmon-fillet-farm-raised-sustainably-sourced-/0023858840000?fulfillment=PICKUP", "fallback_qty": 1, "fallback_unit": "lb", "price_mode": "per_lb"}
     },
     {
       "product": "Avocados",
@@ -74,7 +73,7 @@
       "need_unit": "count",
       "Wegmans": {"query": "Wegmans Avocados Bagged FAMILY PACK", "url": "https://www.wegmans.com/shop/product/51429-Avocados-Bagged-FAMILY-PACK", "fallback_qty": 4, "fallback_unit": "count"},
       "Lidl": {"query": "avocado", "url": "https://www.lidl.com/p/avocado/p11242029", "fallback_qty": 1, "fallback_unit": "count", "package_verified": true, "note": "Canonical Lidl product page identifies this item as 1 piece / 1 ct."},
-      "Safeway": {"query": "Medium Hass Avocado", "url": "https://www.safeway.com/shop/pd/medium-hass-avocado/184040105", "fallback_qty": 1, "fallback_unit": "count", "package_verified": true, "note": "Safeway identifies this mapped Medium Hass Avocado as one avocado sold each."}
+      "Harris Teeter": {"query": "Fresh Avocados Medium Avocado", "url": "https://www.harristeeter.com/p/fresh-avocados-medium-avocado/0000000004771?fulfillment=PICKUP", "fallback_qty": 1, "fallback_unit": "count"}
     },
     {
       "product": "Olive oil",
@@ -82,7 +81,7 @@
       "need_unit": "fl_oz",
       "Wegmans": {"query": "Wegmans Extra Virgin Olive Oil 33.8 fl oz", "url": "https://www.wegmans.com/shop/product/38346", "fallback_qty": 33.8, "fallback_unit": "fl_oz"},
       "Lidl": {"query": "extra virgin olive oil", "url": "https://www.lidl.com/p/extra-virgin-olive-oil/p11240302", "fallback_qty": 25.3, "fallback_unit": "fl_oz", "note": "Lidl mapping uses a 25.3 fl oz bottle; optimizer accounts for needing two bottles to cover 33.8 fl oz."},
-      "Safeway": {"query": "California Olive Ranch Global Blend Extra Virgin Olive Oil 33.8 fl oz", "url": "https://www.safeway.com/shop/pd/california-olive-ranch-global-blend-extra-virgin-olive-oil-33-8-fl-oz/960266191", "fallback_qty": 33.8, "fallback_unit": "fl_oz"}
+      "Harris Teeter": {"query": "Harris Teeter Extra Virgin Olive Oil", "url": "https://www.harristeeter.com/p/harris-teeter-extra-virgin-olive-oil/0007203631060?fulfillment=PICKUP", "fallback_qty": 26, "fallback_unit": "fl_oz", "note": "Harris Teeter mapping uses a 26 fl oz bottle; optimizer accounts for needing two bottles to cover 33.8 fl oz."}
     }
   ]
 }
