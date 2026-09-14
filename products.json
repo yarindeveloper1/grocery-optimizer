@@ -12,10 +12,11 @@
       "store_page": "https://www.lidl.com/s/en-US/stores/washington/wisconsin-ave-nw-4000/"
     },
     "Harris Teeter": {
-      "store_name": "Adams Morgan",
-      "address": "1631 Kalorama Rd NW, Washington, DC 20009",
-      "store_number": "00231",
-      "store_page": "https://www.harristeeter.com/stores/grocery/dc/washington/adams-morgan/097/00231"
+      "store_name": "Lee Harrison",
+      "address": "2425 N Harrison St, Arlington, VA 22207",
+      "store_number": "00023",
+      "zip_code": "22207",
+      "store_page": "https://www.harristeeter.com/stores/grocery/va/arlington/lee-harrison/097/00023"
     }
   },
   "products": [
@@ -73,7 +74,7 @@
       "need_unit": "count",
       "Wegmans": {"query": "Wegmans Avocados Bagged FAMILY PACK", "url": "https://www.wegmans.com/shop/product/51429-Avocados-Bagged-FAMILY-PACK", "fallback_qty": 4, "fallback_unit": "count"},
       "Lidl": {"query": "avocado", "url": "https://www.lidl.com/p/avocado/p11242029", "fallback_qty": 1, "fallback_unit": "count", "package_verified": true, "note": "Canonical Lidl product page identifies this item as 1 piece / 1 ct."},
-      "Harris Teeter": {"query": "Fresh Avocados Medium Avocado", "url": "https://www.harristeeter.com/p/fresh-avocados-medium-avocado/0000000004771?fulfillment=PICKUP", "fallback_qty": 1, "fallback_unit": "count"}
+      "Harris Teeter": {"query": "Fresh Avocados Medium Avocado", "url": "https://www.harristeeter.com/p/fresh-avocados-medium-avocado/0000000004771?fulfillment=PICKUP", "fallback_qty": 1, "fallback_unit": "count", "package_verified": true, "note": "Harris Teeter identifies this mapped medium avocado as 1 ct."}
     },
     {
       "product": "Olive oil",
