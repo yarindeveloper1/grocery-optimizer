@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-12T11:38:15.126488+00:00",
+  "updated_at": "2026-10-13T11:37:55.475610+00:00",
   "zip_code": "20016",
   "offers": [
     {
@@ -7,12 +7,12 @@
       "product": "Eggs",
       "package_qty": 18.0,
       "package_unit": "count",
-      "price": 2.49,
+      "price": 2.19,
       "original_price": null,
       "promo": "",
       "price_type": "ONLINE_LOCALIZED",
       "source_url": "https://www.wegmans.com/shop/product/46155-Grade-AA-Large-Eggs-18-Count",
-      "captured_at": "2026-10-12T11:33:18.206698+00:00"
+      "captured_at": "2026-10-13T11:32:55.892948+00:00"
     },
     {
       "store": "Wegmans",
@@ -24,7 +24,7 @@
       "promo": "",
       "price_type": "ONLINE_LOCALIZED",
       "source_url": "https://www.wegmans.com/shop/product/94427-Vitamin-D-Whole-Milk",
-      "captured_at": "2026-10-12T11:33:24.069847+00:00"
+      "captured_at": "2026-10-13T11:33:01.739055+00:00"
     },
     {
       "store": "Wegmans",
@@ -36,7 +36,7 @@
       "promo": "",
       "price_type": "ONLINE_LOCALIZED",
       "source_url": "https://www.wegmans.com/shop/product/92685-Bananas-Sold-by-the-Each",
-      "captured_at": "2026-10-12T11:33:29.828527+00:00"
+      "captured_at": "2026-10-13T11:33:07.903279+00:00"
     },
     {
       "store": "Wegmans",
@@ -48,7 +48,7 @@
       "promo": "",
       "price_type": "ONLINE_LOCALIZED",
       "source_url": "https://www.wegmans.com/shop/product/57084-Boneless-Skinless-Chicken-Breasts-with-Rib-Meat-FAMILY-PACK",
-      "captured_at": "2026-10-12T11:33:35.748999+00:00"
+      "captured_at": "2026-10-13T11:33:13.931468+00:00"
     },
     {
       "store": "Wegmans",
@@ -60,7 +60,7 @@
       "promo": "",
       "price_type": "ONLINE_LOCALIZED",
       "source_url": "https://www.wegmans.com/shop/product/37906-5-Greek-Plain-Whole-Milk-Yogurt",
-      "captured_at": "2026-10-12T11:33:41.302926+00:00"
+      "captured_at": "2026-10-13T11:33:19.858315+00:00"
     },
     {
       "store": "Wegmans",
@@ -72,7 +72,7 @@
       "promo": "",
       "price_type": "ONLINE_LOCALIZED",
       "source_url": "https://www.wegmans.com/shop/product/357243-Fresh-Atlantic-Salmon-Fillet-packaged-Farm-Raised-Product-of-CanadaNorway-Processed-in-USA",
-      "captured_at": "2026-10-12T11:33:47.064693+00:00"
+      "captured_at": "2026-10-13T11:33:25.605665+00:00"
     },
     {
       "store": "Wegmans",
@@ -84,7 +84,7 @@
       "promo": "",
       "price_type": "ONLINE_LOCALIZED",
       "source_url": "https://www.wegmans.com/shop/product/51429-Avocados-Bagged-FAMILY-PACK",
-      "captured_at": "2026-10-12T11:33:53.415891+00:00"
+      "captured_at": "2026-10-13T11:33:31.733386+00:00"
     },
     {
       "store": "Wegmans",
@@ -96,7 +96,7 @@
       "promo": "",
       "price_type": "ONLINE_LOCALIZED",
       "source_url": "https://www.wegmans.com/shop/product/38346",
-      "captured_at": "2026-10-12T11:33:59.545375+00:00"
+      "captured_at": "2026-10-13T11:33:37.764772+00:00"
     },
     {
       "store": "Wegmans",
@@ -108,7 +108,7 @@
       "promo": "",
       "price_type": "ONLINE_LOCALIZED",
       "source_url": "https://www.wegmans.com/shop/product/332997-Blueberries-FAMILY-PACK",
-      "captured_at": "2026-10-12T11:34:05.720351+00:00"
+      "captured_at": "2026-10-13T11:33:43.550175+00:00"
     },
     {
       "store": "Wegmans",
@@ -120,7 +120,7 @@
       "promo": "",
       "price_type": "ONLINE_LOCALIZED",
       "source_url": "https://www.wegmans.com/shop/product/92942",
-      "captured_at": "2026-10-12T11:34:11.315844+00:00"
+      "captured_at": "2026-10-13T11:33:50.063408+00:00"
     },
     {
       "store": "Wegmans",
@@ -132,7 +132,7 @@
       "promo": "",
       "price_type": "ONLINE_LOCALIZED",
       "source_url": "https://www.wegmans.com/shop/product/83588",
-      "captured_at": "2026-10-12T11:34:17.123160+00:00"
+      "captured_at": "2026-10-13T11:33:56.035188+00:00"
     },
     {
       "store": "Lidl",
@@ -145,7 +145,7 @@
       "price_type": "ONLINE_STORE_PAGE",
       "source_url": "https://www.lidl.com/p/large-cage-free-brown-eggs-grade-a/p11238869",
       "variant_note": "",
-      "captured_at": "2026-10-12T11:34:30.428770+00:00"
+      "captured_at": "2026-10-13T11:34:04.948608+00:00"
     },
     {
       "store": "Lidl",
@@ -158,20 +158,20 @@
       "price_type": "ONLINE_STORE_PAGE",
       "source_url": "https://www.lidl.com/p/lidl-whole-milk/p11237181",
       "variant_note": "Lidl mapping uses the 64 fl oz whole-milk package; optimizer buys two when 1 gallon is needed.",
-      "captured_at": "2026-10-12T11:34:38.670039+00:00"
+      "captured_at": "2026-10-13T11:34:14.856768+00:00"
     },
     {
       "store": "Lidl",
       "product": "Bananas",
       "package_qty": 1.0,
       "package_unit": "lb",
-      "price": 0.5,
+      "price": 0.48,
       "original_price": null,
       "promo": "",
       "price_type": "ONLINE_STORE_PAGE",
       "source_url": "https://www.lidl.com/p/bananas/p11242690",
       "variant_note": "",
-      "captured_at": "2026-10-12T11:34:48.154680+00:00"
+      "captured_at": "2026-10-13T11:34:22.290196+00:00"
     },
     {
       "store": "Lidl",
@@ -184,7 +184,7 @@
       "price_type": "ONLINE_STORE_PAGE",
       "source_url": "https://www.lidl.com/p/boneless-skinless-chicken-breast-family-pack/p11247136",
       "variant_note": "",
-      "captured_at": "2026-10-12T11:34:57.991433+00:00"
+      "captured_at": "2026-10-13T11:34:29.835549+00:00"
     },
     {
       "store": "Lidl",
@@ -197,7 +197,7 @@
       "price_type": "ONLINE_STORE_PAGE",
       "source_url": "https://www.lidl.com/p/nonfat-greek-yogurt-plain/p11238026",
       "variant_note": "Lidl mapping is plain nonfat Greek yogurt because a directly comparable plain whole-milk 32 oz listing was not found.",
-      "captured_at": "2026-10-12T11:35:08.218591+00:00"
+      "captured_at": "2026-10-13T11:34:38.356704+00:00"
     },
     {
       "store": "Lidl",
@@ -210,7 +210,20 @@
       "price_type": "ONLINE_STORE_PAGE",
       "source_url": "https://www.lidl.com/p/fish-market-chilean-atlantic-salmon-whole-fillet-skin-on/p11239802",
       "variant_note": "",
-      "captured_at": "2026-10-12T11:35:15.901157+00:00"
+      "captured_at": "2026-10-13T11:34:45.499771+00:00"
+    },
+    {
+      "store": "Lidl",
+      "product": "Avocados",
+      "package_qty": 1.0,
+      "package_unit": "count",
+      "price": 0.59,
+      "original_price": null,
+      "promo": "",
+      "price_type": "ONLINE_STORE_PAGE",
+      "source_url": "https://www.lidl.com/p/avocado/p11242029",
+      "variant_note": "Canonical Lidl product page identifies this item as 1 piece / 1 ct.",
+      "captured_at": "2026-10-13T11:34:52.800233+00:00"
     },
     {
       "store": "Lidl",
@@ -223,7 +236,7 @@
       "price_type": "ONLINE_STORE_PAGE",
       "source_url": "https://www.lidl.com/p/extra-virgin-olive-oil/p11240302",
       "variant_note": "Lidl mapping uses a 25.3 fl oz bottle; optimizer accounts for needing two bottles to cover 33.8 fl oz.",
-      "captured_at": "2026-10-12T11:35:30.321177+00:00"
+      "captured_at": "2026-10-13T11:35:00.106243+00:00"
     },
     {
       "store": "Lidl",
@@ -236,7 +249,7 @@
       "price_type": "ONLINE_STORE_PAGE",
       "source_url": "https://www.lidl.com/p/blueberries-family-pack-18-oz/p11241924",
       "variant_note": "",
-      "captured_at": "2026-10-12T11:35:37.049789+00:00"
+      "captured_at": "2026-10-13T11:35:07.471977+00:00"
     },
     {
       "store": "Lidl",
@@ -249,7 +262,7 @@
       "price_type": "ONLINE_STORE_PAGE",
       "source_url": "https://www.lidl.com/p/raspberries-6-oz/p11242695",
       "variant_note": "",
-      "captured_at": "2026-10-12T11:35:44.127751+00:00"
+      "captured_at": "2026-10-13T11:35:14.749486+00:00"
     }
   ],
   "status": {
@@ -262,11 +275,10 @@
     },
     "Lidl": {
       "ok": true,
-      "products_collected": 9,
+      "products_collected": 10,
       "products_requested": 11,
-      "message": "9/11 products collected",
+      "message": "10/11 products collected",
       "errors": [
-        "Avocados: Lidl did not expose a product price",
         "Cheddar cheese: Page.goto: net::ERR_SSL_PROTOCOL_ERROR at https://www-new.lidl.com/p/new-york-sharp-cheddar-cheese-block/p11239385\nCall log:\n  - navigating to \"https://www-new.lidl.com/p/new-york-sharp-cheddar-cheese-block/p11239385\", waiting until \"domcontentloaded\"\n"
       ]
     },
